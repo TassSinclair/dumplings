@@ -1,0 +1,6 @@
+*.DS_Store
+.idea/*
+out/*
+local.properties
+gen/*
+Dumplings.iml

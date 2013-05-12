@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:paddingLeft="@dimen/activityHorizontalMargin"
+              android:paddingRight="@dimen/activityHorizontalMargin"
+              android:paddingTop="@dimen/activityVerticalMargin"
+              android:paddingBottom="@dimen/activityVerticalMargin">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/howManyPeople"
+                android:textSize="@dimen/messageTextSize"/>
+
+        <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/howManyPeopleSpinner"
+                android:layout_gravity="center_horizontal"
+                android:spinnerMode="dialog"
+                android:textAlignment="inherit"
+                android:focusable="false"/>
+
+    </LinearLayout>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time for dumplings!"
+            android:id="@+id/button"
+            android:layout_gravity="center"/>
+
+</LinearLayout>
+
