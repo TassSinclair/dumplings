@@ -1,6 +1,8 @@
 *.DS_Store
 .idea/*
-out/*
+Dumplings/build/*
 local.properties
 gen/*
 Dumplings.iml
+.gradle/*
+build/*

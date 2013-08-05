@@ -1,0 +1,10 @@
+<resources>
+    <integer-array name="defaultDumplingRatings">
+        <item>4</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </integer-array>
+    <integer name="maxServings">15</integer>
+</resources>

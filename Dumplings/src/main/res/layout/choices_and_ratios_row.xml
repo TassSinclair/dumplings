@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:focusableInTouchMode="false"
+              android:focusable="false"
+              android:measureWithLargestChild="false"
+              android:paddingLeft="16dp"
+              android:paddingTop="8dp"
+              android:paddingRight="16dp"
+              android:paddingBottom="8dp"
+        >
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView"
+            android:src="@drawable/dumpling"
+            android:layout_marginRight="8dp"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:editable="false"
+                android:clickable="false"
+                android:capitalize="words"
+                android:hint="@string/dumplingDishHint"
+                android:singleLine="true"
+                android:textSize="22sp"
+                android:id="@+id/dumplingNameEditText"/>
+        <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dumplingRatioRatingBar"
+                android:numStars="5"
+                style="@style/dumplingRatingBar"
+                android:stepSize="1"
+                android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+</LinearLayout>

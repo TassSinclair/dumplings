@@ -1,0 +1,83 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'com.android.tools.build',
+        name: 'gradle',
+        version: '0.4.1'
+    }
+}
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+}
+
+println "${project.projectDir}/gen/"
+
+configurations {
+    compile
+    androidannotations.extendsFrom(compile)
+}
+
+dependencies {
+    compile files('libs/android-support-v4.jar')
+    compile group: 'commons-lang',
+            name: 'commons-lang',
+            version: '2.6'
+    compile group: 'com.googlecode.androidannotations',
+            name: 'androidannotations-api',
+            version: '3.0-SNAPSHOT'
+    androidannotations group: 'com.googlecode.androidannotations',
+            name: 'androidannotations',
+            version: '3.0-SNAPSHOT'
+}
+
+android {
+    compileSdkVersion 17
+    buildToolsVersion "17.0.0"
+
+    defaultConfig {
+        minSdkVersion 10
+        targetSdkVersion 17
+    }
+
+
+}
+
+afterEvaluate  { project ->
+//    println "${project.projectDir}/gen/"
+    android.applicationVariants.each { variant ->
+        variant.javaCompile.options.compilerArgs += [
+                '-classpath', configurations.compile.asPath,
+                '-processorpath', configurations.androidannotations.asPath,
+                '-processor', 'com.googlecode.androidannotations.AndroidAnnotationProcessor',
+                '-AandroidManifestFile=' + variant.processResources.manifestFile,
+                '-s', "${project.projectDir}/gen/"
+        ]
+    }
+}
+
+
+//        aptOutput = file("${project.buildDir}/source/apt_generated/${variant.dirName}")
+//        println "*********"
+//        println "variant: ${variant.name}"
+//        println "manifest: ${variant.processResources.manifestFile}"
+//        println "aptOutput: ${aptOutput}"
+//        println "*********"
+//
+//        variant.javaCompile.doFirst {
+//            println "*** compile doFirst ${variant.name}"
+//            aptOutput.mkdirs()
+//            variant.javaCompile.options.compilerArgs += [
+//                    '-processorPath', configurations.apt.getAsPath(),
+//                    '-AandroidManifestFile=' + variant.processResources.manifestFile,
+//                    '-s', aptOutput
+//            ]
+//        }
+//    }
+//}

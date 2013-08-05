@@ -1,0 +1,17 @@
+package net.sinclairstudios.util;
+
+import android.widget.TextView;
+
+public class TextViewUpdater {
+    private final TextView textView;
+    private final String fieldValue;
+
+    public TextViewUpdater(TextView textView, String fieldValue) {
+        this.textView = textView;
+        this.fieldValue = fieldValue;
+    }
+
+    public void update(Object value) {
+        textView.setText(fieldValue.replace("{}", value.toString()));
+    }
+}

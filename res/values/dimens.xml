@@ -1,5 +1,0 @@
-<resources>
-    <dimen name="activityHorizontalMargin">16dp</dimen>
-    <dimen name="activityVerticalMargin">16dp</dimen>
-    <dimen name="messageTextSize">20dp</dimen>
-</resources>

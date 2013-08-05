@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HowManyPeople">
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/servingCountdownTextView"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/white"
+            android:padding="12dp"
+            android:textSize="22sp"
+            android:gravity="center_horizontal"/>
+
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/dumplingScrollable"
+            android:layout_weight="1">
+        <net.sinclairstudios.android.dumplings.layout.LineSeparatorLinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true"
+                android:id="@+id/yourOrderRowHolder">
+        </net.sinclairstudios.android.dumplings.layout.LineSeparatorLinearLayout>
+    </ScrollView>
+</LinearLayout>
