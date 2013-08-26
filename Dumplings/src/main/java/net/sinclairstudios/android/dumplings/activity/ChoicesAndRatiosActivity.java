@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -15,12 +14,10 @@ import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EActivity;
 import com.googlecode.androidannotations.annotations.ViewById;
 
-import net.sinclairstudios.android.dumplings.domain.DumplingRatingList;
 import net.sinclairstudios.android.dumplings.R;
+import net.sinclairstudios.android.dumplings.domain.DumplingRatingList;
 import net.sinclairstudios.android.dumplings.domain.DumplingRatingViewHook;
 import net.sinclairstudios.android.dumplings.layout.LineSeparatorLinearLayout;
-
-import java.util.logging.Logger;
 
 @EActivity(R.layout.choices_and_ratios_layout)
 public class ChoicesAndRatiosActivity extends Activity {

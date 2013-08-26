@@ -2,13 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.sinclairstudios.android.dumplings"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="@string/versionName">
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="16" />
+        android:targetSdkVersion="17" />
 
     <application
+        android:supportsRtl="true"
         android:allowBackup="true"
         android:icon="@drawable/main_icon"
         android:label="@string/applicationName"
@@ -24,6 +25,11 @@
         <activity
             android:name="net.sinclairstudios.android.dumplings.activity.YourOrderActivity_"
             android:label="@string/yourOrderName"
+            android:parentActivityName="net.sinclairstudios.android.dumplings.activity.HowManyPeopleActivity_">
+        </activity>
+        <activity
+            android:name="net.sinclairstudios.android.dumplings.activity.AboutActivity_"
+            android:label="@string/aboutName"
             android:parentActivityName="net.sinclairstudios.android.dumplings.activity.HowManyPeopleActivity_">
         </activity>
         <activity

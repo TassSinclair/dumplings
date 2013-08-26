@@ -6,3 +6,4 @@ gen/*
 Dumplings.iml
 .gradle/*
 build/*
+Dumplings/gen/*

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <LinearLayout
+            android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:layout_gravity="center">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/applicationName"
+                android:id="@+id/textView"
+                android:drawableTop="@drawable/dumpling"
+                android:textSize="42sp"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"/>
+
+        <TextView
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/versionName"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wasMadeBy"
+                android:id="@+id/textView4"
+                android:drawableBottom="@drawable/sinclair_studios"
+                android:drawablePadding="0sp"
+                android:textSize="18dp"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center"
+                android:paddingTop="48sp"
+                android:paddingLeft="22sp"
+                android:paddingRight="22sp"
+                />
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sinclairStudiosUrl"
+                android:id="@+id/button"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:onClick="openBrowserToSinclairStudiosWebsite"/>
+    </LinearLayout>
+
+</LinearLayout>
+

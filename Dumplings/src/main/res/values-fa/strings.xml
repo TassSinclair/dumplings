@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="applicationName">دامپلینگ!</string>
+    <string name="howManyServings">تعداد پرس : {}</string>
+    <string name="choicesAndRatiosName">انواع و نسبت‌ها</string>
+    <string name="yourOrderName">سفارش</string>
+    <string name="aboutName">درباره</string>
+    <string name="calculateRatiosButton">‌دامپلینگارو بیار</string>
+    <string name="dumplingTypeHint">اسم دامپلینگ؟</string>
+    <string name="servingCountdown">منتظر {} پرس باش</string>
+    <string name="wasMadeBy">ساخته شده در</string>
+    <string-array name="defaultDumplingNames">
+        <item>خوک آب‌پز</item>
+        <item>گوساله سرخ شده</item>
+        <item>مرغ و میگوی آب‌پز</item>
+        <item>خوک سرخ شده</item>
+        <item>گوساله آب‌پز</item>
+    </string-array>
+</resources>

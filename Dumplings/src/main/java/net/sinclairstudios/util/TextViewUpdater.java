@@ -2,6 +2,8 @@ package net.sinclairstudios.util;
 
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 public class TextViewUpdater {
     private final TextView textView;
     private final String fieldValue;
@@ -12,6 +14,6 @@ public class TextViewUpdater {
     }
 
     public void update(Object value) {
-        textView.setText(fieldValue.replace("{}", value.toString()));
+        textView.setText(fieldValue.replace("{}", DecimalFormat.getInstance().format(value)));
     }
 }

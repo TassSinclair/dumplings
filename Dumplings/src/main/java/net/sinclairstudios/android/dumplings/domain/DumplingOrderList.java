@@ -1,7 +1,6 @@
 package net.sinclairstudios.android.dumplings.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -29,8 +28,10 @@ public class DumplingOrderList implements Serializable, Iterable<DumplingOrder> 
         while (filteredQuantities.size() > 1) {
             DumplingServingCalculation highestFraction = findHighestFraction(filteredQuantities);
             DumplingServingCalculation lowestFraction = findLowestFraction(filteredQuantities);
+
             highestFraction.addServings(lowestFraction.getServings().getRemainder());
             lowestFraction.subtractServings(lowestFraction.getServings().getRemainder());
+
             filteredQuantities = filterServingsWithoutRemainders(filteredQuantities);
         }
 

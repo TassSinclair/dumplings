@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="applicationName">Gombócos!</string>
+    <string name="howManyServings">Gombóc tálak száma: {}</string>
+    <string name="choicesAndRatiosName">Választék és prioritás</string>
+    <string name="yourOrderName">Rendelésed</string>
+    <string name="aboutName">Alkalmazás info</string>
+    <string name="calculateRatiosButton">Mutasd a gombócokat!</string>
+    <string name="dumplingTypeHint">Mi a gombóc neve?</string>
+    <string name="servingCountdown">{} gombóc tálra várok</string>
+    <string name="wasMadeBy">készítette:</string>
+    <string-array name="defaultDumplingNames">
+        <item>Főtt sertés</item>
+        <item>Sült marha</item>
+        <item>Főtt csirke &amp; rák</item>
+        <item>Sült sertés</item>
+        <item>Főtt marha</item>
+    </string-array>
+</resources>

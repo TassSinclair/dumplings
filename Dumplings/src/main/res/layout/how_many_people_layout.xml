@@ -10,28 +10,27 @@
     tools:context=".HowManyPeople"
     android:gravity="center_horizontal">
 
-    <LinearLayout
+    <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="13dp">
-        <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:id="@+id/howManyPeopleTextView"
-                android:text="@string/howManyServingsPrompt"
-                />
-    </LinearLayout>
-
+            android:textSize="22sp"
+            android:gravity="center"
+            android:layout_margin="8dp"
+            android:id="@+id/howManyPeopleTextView"
+            android:text="@string/howManyServings"
+            />
     <SeekBar
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/howManyPeopleSeekBar"
+            android:layout_margin="8dp"
             android:max="@integer/maxServings"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:text="@string/calculateRatiosButton"
             android:id="@+id/calculateRatiosButton"
             />
+
 </LinearLayout>

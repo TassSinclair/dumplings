@@ -2,6 +2,7 @@ package net.sinclairstudios.android.dumplings.domain;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -32,7 +33,7 @@ public class DumplingOrderViewHook {
         ViewGroup row = null;
         for (int i = 0; i < dumplingOrder.getServings(); ++i) {
             if (i % 5 == 0) {
-                row = new TableRow(context);
+                row = (TableRow) LayoutInflater.from(context).inflate(R.layout.your_order_servings_row, null);
                 checkboxTableLayout.addView(row);
             }
             CheckBox checkbox = createCheckbox(context, onCheckedChangeListener);

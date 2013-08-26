@@ -2,7 +2,6 @@ package net.sinclairstudios.android.dumplings;
 
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.os.Bundle;
 
 import net.sinclairstudios.android.dumplings.domain.Dumpling;
 import net.sinclairstudios.android.dumplings.domain.DumplingRating;
@@ -10,21 +9,12 @@ import net.sinclairstudios.android.dumplings.domain.DumplingRatingList;
 import net.sinclairstudios.android.dumplings.domain.Rating;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class DumplingsRatingListDataController implements DataController<DumplingRatingList>,
-        SerialisableViaResources {
-
-    private static final String DUMPLING_NAMES_KEY = "dumplingnames";
-    private static final String DUMPLING_RATINGS_KEY = "dumplingratings";
+public class DumplingsRatingListDataController implements DataController<DumplingRatingList> {
 
     private DumplingRatingList dumplingRatingList;
-
-    public DumplingsRatingListDataController(DumplingRatingList dumplingRatingList) {
-        this.dumplingRatingList = dumplingRatingList;
-    }
 
     public DumplingsRatingListDataController() {
         reset();
@@ -45,17 +35,11 @@ public class DumplingsRatingListDataController implements DataController<Dumplin
         this.dumplingRatingList = it;
     }
 
-    @Override
     public void populate(Resources resources) {
         String[] names = resources.getStringArray(R.array.defaultDumplingNames);
         int[] ratings = resources.getIntArray(R.array.defaultDumplingRatings);
 
         populateFromValues(names, ratings);
-    }
-
-    @Override
-    public void depopulate(Resources bundle) {
-
     }
 
     private void populateFromValues(String[] names, int[] ratings) {
@@ -75,7 +59,7 @@ public class DumplingsRatingListDataController implements DataController<Dumplin
                     .append(dumplingRating.getRating().getValue())
                     .append(";");
         }
-        editor.putString(DUMPLING_NAMES_KEY, builder.toString());
+        editor.putString(DumplingRatingList.class.getName(), builder.toString());
         editor.commit();
     }
 

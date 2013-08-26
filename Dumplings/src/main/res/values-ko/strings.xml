@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="applicationName">만두!</string>
+    <string name="howManyServings">접시 수: {}</string>
+    <string name="choicesAndRatiosName">선택 및 비율</string>
+    <string name="yourOrderName">주문</string>
+    <string name="aboutName">about 만두</string>
+    <string name="calculateRatiosButton">만두먹으러 가자!</string>
+    <string name="dumplingTypeHint">만두 메뉴?</string>
+    <string name="servingCountdown">{} 메뉴 대기</string>
+    <string name="wasMadeBy">was made by</string>
+    <string-array name="defaultDumplingNames">
+        <item>돼지고기 스팀</item>
+        <item>소고기 튀김</item>
+        <item>닭고기 &amp; 새우 스팀</item>
+        <item>돼지고기 튀김</item>
+        <item>소고기 스팀</item>
+    </string-array>
+</resources>
