@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="applicationName">Dumplings!</string>
+    <string name="howManyServings">Nombre de portions: {}</string>
+    <string name="choicesAndRatiosName">Choix et ratios</string>
+    <string name="yourOrderName">Votre Commande</string>
+    <string name="aboutName">A propos</string>
+    <string name="calculateRatiosButton">Ramène les dumplings!</string>
+    <string name="dumplingTypeHint">Nom du Dumpling?</string>
+    <string name="servingCountdown">En attente de {} portions</string>
+    <string name="wasMadeBy">conçu par</string>
+    <string-array name="defaultDumplingNames">
+        <item>Porc Bouilli</item>
+        <item>Boeuf Frit</item>
+        <item>Poulet &amp; Crevettes Bouilli</item>
+        <item>Porc Frit</item>
+        <item>Boeuf Bouilli</item>
+    </string-array>
+</resources>
