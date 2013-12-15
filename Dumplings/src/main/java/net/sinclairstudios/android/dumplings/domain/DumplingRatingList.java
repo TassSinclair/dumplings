@@ -1,8 +1,5 @@
 package net.sinclairstudios.android.dumplings.domain;
 
-import net.sinclairstudios.android.dumplings.domain.DumplingRating;
-import net.sinclairstudios.android.dumplings.domain.DumplingRatingViewHook;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,10 +24,6 @@ public class DumplingRatingList implements Serializable, Iterable<DumplingRating
     @Override
     public Iterator<DumplingRating> iterator() {
         return dumplingRatings.iterator();
-    }
-
-    public int size() {
-        return dumplingRatings.size();
     }
 
     public Iterable<DumplingRatingViewHook> getDumplingRatingViewHooks() {
