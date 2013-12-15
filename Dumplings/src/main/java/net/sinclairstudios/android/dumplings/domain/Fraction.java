@@ -9,7 +9,7 @@ public class Fraction implements Comparable<Fraction> {
         this.denominator = denominator;
     }
 
-    public int getReal() {
+    public int getAsInt() {
         return this.numerator / this.denominator;
     }
 
@@ -21,18 +21,14 @@ public class Fraction implements Comparable<Fraction> {
         return new Fraction(getRemainderAsInt(), this.denominator);
     }
 
-    public Fraction add(Fraction toAdd) {
-        if (toAdd.denominator != this.denominator) {
-            throw new IllegalArgumentException();
-        }
-        return new Fraction(this.numerator + toAdd.numerator, this.denominator);
+    public Fraction add(Fraction that) {
+        assertSameDenominator(that);
+        return new Fraction(this.numerator + that.numerator, this.denominator);
     }
 
-    public Fraction subtract(Fraction toAdd) {
-        if (toAdd.denominator != this.denominator) {
-            throw new IllegalArgumentException();
-        }
-        return new Fraction(this.numerator - toAdd.numerator, this.denominator);
+    public Fraction subtract(Fraction that) {
+        assertSameDenominator(that);
+        return new Fraction(this.numerator - that.numerator, this.denominator);
     }
 
     public boolean hasRemainder() {
@@ -41,9 +37,13 @@ public class Fraction implements Comparable<Fraction> {
 
     @Override
     public int compareTo(Fraction that) {
-        if (that.denominator != this.denominator) {
-            throw new IllegalArgumentException();
-        }
+        assertSameDenominator(that);
         return this.numerator - that.numerator;
+    }
+
+    private void assertSameDenominator(Fraction that) {
+        if (that.denominator != this.denominator) {
+            throw new IllegalArgumentException("fraction denominators must be the same");
+        }
     }
 }
