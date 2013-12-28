@@ -46,7 +46,8 @@ public class DumplingOrderViewHook {
         return new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Log.d(getClass().getName(), "Change arrival event received: " + dumplingOrder + ", " + b);
+                Log.d(DumplingOrderViewHook.class.getName(),
+                        "Change arrival event received: " + dumplingOrder + ", " + b);
                 thisCountTracker.add(b ? -1 : 1);
                 masterCountTracker.add(b ? -1 : 1);
             }

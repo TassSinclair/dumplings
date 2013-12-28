@@ -29,12 +29,12 @@ public class DumplingRatingViewHook implements TextWatcher, RatingBar.OnRatingBa
     @Override
     public void afterTextChanged(Editable editable) {
         this.dumplingRating.setDumpling(new Dumpling(editable.toString()));
-        Log.d(getClass().getName(), "Change name event received: " + dumplingRating);
+        Log.d(DumplingRatingViewHook.class.getName(), "Change name event received: " + dumplingRating);
     }
 
     @Override
     public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
         this.dumplingRating.setRating(new Rating(ratingBar.getProgress()));
-        Log.d(getClass().getName(), "Change rating event received: " + dumplingRating);
+        Log.d(DumplingRatingViewHook.class.getName(), "Change rating event received: " + dumplingRating);
     }
 }

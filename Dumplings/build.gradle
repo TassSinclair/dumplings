@@ -1,14 +1,18 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
     }
     dependencies {
-        classpath group: 'com.android.tools.build',
-        name: 'gradle',
-        version: '0.4.1'
+        classpath 'com.android.tools.build:gradle:0.6.+'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.6.+'
+        classpath 'com.googlecode.androidannotations:androidannotations-api:3.0-SNAPSHOT'
     }
 }
 apply plugin: 'android'
+apply plugin: 'kotlin-android'
 
 repositories {
     mavenCentral()
@@ -17,40 +21,36 @@ repositories {
     }
 }
 
-println "${project.projectDir}/gen/"
-
 configurations {
     compile
     androidannotations.extendsFrom(compile)
 }
 
 dependencies {
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.6.+'
     compile files('libs/android-support-v4.jar')
-    compile group: 'commons-lang',
-            name: 'commons-lang',
-            version: '2.6'
-    compile group: 'com.googlecode.androidannotations',
-            name: 'androidannotations-api',
-            version: '3.0-SNAPSHOT'
-    androidannotations group: 'com.googlecode.androidannotations',
-            name: 'androidannotations',
-            version: '3.0-SNAPSHOT'
+//    compile 'commons-lang:commons-lang:2.6'
+    compile 'com.googlecode.androidannotations:androidannotations-api:3.0-SNAPSHOT'
+    androidannotations 'com.googlecode.androidannotations:androidannotations:3.0-SNAPSHOT'
 }
 
 android {
-    compileSdkVersion 17
-    buildToolsVersion "17.0.0"
+    compileSdkVersion 19
+    buildToolsVersion "19.0.0"
 
     defaultConfig {
-        minSdkVersion 10
+        minSdkVersion 17
         targetSdkVersion 17
     }
 
-
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+//        main.java.srcDirs += 'gen'
+    }
 }
 
 afterEvaluate  { project ->
-//    println "${project.projectDir}/gen/"
+    println "${project.projectDir}/gen/"
     android.applicationVariants.each { variant ->
         variant.javaCompile.options.compilerArgs += [
                 '-classpath', configurations.compile.asPath,

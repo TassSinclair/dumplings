@@ -32,8 +32,8 @@ public final class YourOrderActivity_
     }
 
     private void afterSetContentView_() {
-        servingCountdownTextView = ((TextView) findViewById(id.servingCountdownTextView));
         yourOrderRowHolder = ((LineSeparatorLinearLayout) findViewById(id.yourOrderRowHolder));
+        servingCountdownTextView = ((TextView) findViewById(id.servingCountdownTextView));
         initRows();
     }
 
