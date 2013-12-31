@@ -9,9 +9,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/servingCountdownTextView"
             android:background="@android:color/darker_gray"
-            android:textColor="@android:color/white"
+            android:textAppearance="@style/GreyBarText"
             android:padding="12dp"
-            android:textSize="22sp"
             android:gravity="center_horizontal"/>
 
     <ScrollView

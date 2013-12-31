@@ -18,13 +18,19 @@
 
     <style name="DumplingRatingBar" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/rating_stars</item>
-        <item name="android:minHeight">36sp</item>
-        <item name="android:maxHeight">36sp</item>
+        <item name="android:minHeight">40sp</item>
+        <item name="android:maxHeight">40sp</item>
     </style>
     <style name="DumplingCheckboxStyle" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:drawable">@drawable/dumpling_checkbox</item>
         <item name="android:background">@drawable/dumpling_checkbox</item>
         <!--<item name="android:maxHeight">36sp</item>-->
         <!--<item name="android:minHeight">36sp</item>-->
+    </style>
+
+
+    <style name="GreyBarText">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">22sp</item>
     </style>
 </resources>

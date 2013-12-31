@@ -4,27 +4,25 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.*;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.Click;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.ViewById;
+import com.googlecode.androidannotations.annotations.*;
 
 import net.sinclairstudios.android.dumplings.DumplingsRatingListDataController;
 import net.sinclairstudios.android.dumplings.R;
 import net.sinclairstudios.android.dumplings.domain.DumplingOrderList;
 import net.sinclairstudios.android.dumplings.domain.DumplingRatingList;
 import net.sinclairstudios.util.TextViewUpdater;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 
-@EActivity(R.layout.how_many_people_layout)
-public class HowManyPeopleActivity extends Activity {
+@EFragment(R.layout.how_many_people_layout)
+public class HowManyPeopleFragment extends Fragment {
 
     private final static int MODIFYING_CHOICES_AND_RATIOS = 1;
 
@@ -34,13 +32,13 @@ public class HowManyPeopleActivity extends Activity {
     @ViewById
     protected TextView howManyPeopleTextView;
 
-    private DumplingsRatingListDataController dumplingsRatingListDataController;
+    private DumplingsRatingListDataController dumplingsRatingListDataController =
+            new DumplingsRatingListDataController();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dumplingsRatingListDataController = new DumplingsRatingListDataController();
-        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences preferences = getPreferences();
         if (preferences.contains(DumplingRatingList.class.getName())) {
             dumplingsRatingListDataController.populate(preferences);
         } else {
@@ -49,8 +47,16 @@ public class HowManyPeopleActivity extends Activity {
     }
 
     @Click
-    public void calculateRatiosButton() {
-        Intent intent = new Intent(this, YourOrderActivity_.class);
+    protected void choicesAndRatiosButton() {
+        Intent intent = new Intent(getActivity(), ChoicesAndRatiosActivity_.class);
+        intent.putExtra(DumplingRatingList.class.getName(), dumplingsRatingListDataController.get());
+        startActivityForResult(intent, MODIFYING_CHOICES_AND_RATIOS);
+    }
+
+
+    @Click
+    protected void calculateRatiosButton() {
+        Intent intent = new Intent(getActivity(), YourOrderActivity_.class);
         DumplingRatingList dumplingRatings = dumplingsRatingListDataController.get();
         intent.putExtra(DumplingOrderList.class.getName(),
                 new DumplingOrderList(dumplingRatings, howManyPeopleSeekBar.getProgress() + 1));
@@ -60,7 +66,7 @@ public class HowManyPeopleActivity extends Activity {
     @AfterViews
     protected void initHowManyPeopleSpinner() {
         SeekBar.OnSeekBarChangeListener howManyPeopleChangeListener = createHowManyPeopleChangeListener();
-        int progress = getPreferences(MODE_PRIVATE).getInt(SeekBar.class.getName(), 0);
+        int progress = getPreferences().getInt(SeekBar.class.getName(), 0);
 
         howManyPeopleChangeListener.onProgressChanged(howManyPeopleSeekBar, progress, false);
         // Call it once to fake an update, if the update is no change.
@@ -85,36 +91,18 @@ public class HowManyPeopleActivity extends Activity {
         };
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.how_many_people_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.choicesAndRatiosMenuItem:
-                navigateToChoicesAndRatiosActivity();
-                return true;
-            case R.id.aboutMenuItem:
-                navigateToAboutActivity();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     private void logUncateredResultCode(String request, int resultCode) {
-        Log.w(getLocalClassName(), "uncatered result code " + resultCode + " for " + request);
+        Log.w(getActivity().getLocalClassName(), "uncatered result code " + resultCode + " for " + request);
     }
 
     private void logUncateredRequestCode(int requestCode) {
-        Log.w(getLocalClassName(), "uncatered request code " + requestCode);
+        Log.w(getActivity().getLocalClassName(), "uncatered request code " + requestCode);
     }
 
     private void onModifyingChoicesAndRatiosResult(int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             dumplingsRatingListDataController.set((DumplingRatingList)
                     data.getSerializableExtra(DumplingRatingList.class.getName()));
         } else {
@@ -123,7 +111,7 @@ public class HowManyPeopleActivity extends Activity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case MODIFYING_CHOICES_AND_RATIOS:
                 onModifyingChoicesAndRatiosResult(resultCode, data);
@@ -136,22 +124,16 @@ public class HowManyPeopleActivity extends Activity {
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
-        SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = getPreferences().edit();
         dumplingsRatingListDataController.depopulate(editor);
 
         editor.putInt(SeekBar.class.getName(), howManyPeopleSeekBar.getProgress());
         editor.commit();
     }
 
-    private void navigateToChoicesAndRatiosActivity() {
-        Intent intent = new Intent(this, ChoicesAndRatiosActivity_.class);
-        intent.putExtra(DumplingRatingList.class.getName(), dumplingsRatingListDataController.get());
-        startActivityForResult(intent, MODIFYING_CHOICES_AND_RATIOS);
-    }
-
-    private void navigateToAboutActivity() {
-        startActivity(new Intent(this, AboutActivity_.class));
+    private SharedPreferences getPreferences() {
+        return getActivity().getPreferences(Activity.MODE_PRIVATE);
     }
 }

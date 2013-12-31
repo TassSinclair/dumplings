@@ -2,12 +2,6 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:id="@+id/choicesAndRatiosMenuItem"
-            android:title="@string/choicesAndRatiosName"
-            android:showAsAction="ifRoom|withText"
-            android:icon="@drawable/action_settings"
-            />
-    <item
             android:id="@+id/aboutMenuItem"
             android:title="@string/aboutName"
             android:showAsAction="never"

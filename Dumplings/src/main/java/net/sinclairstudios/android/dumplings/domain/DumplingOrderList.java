@@ -26,7 +26,7 @@ public class DumplingOrderList implements Serializable, Iterable<DumplingOrder> 
     private List<DumplingOrder> createDumplingOrdersFromCalculations(List<DumplingServingCalculation> quantities) {
         ArrayList<DumplingOrder> orders = new ArrayList<DumplingOrder>();
         for (DumplingServingCalculation quantity : quantities) {
-            dumplingOrders.add(new DumplingOrder(quantity.getDumpling(), quantity.getServings().getAsInt()));
+            orders.add(new DumplingOrder(quantity.getDumpling(), quantity.getServings().getAsInt()));
         }
         return orders;
     }

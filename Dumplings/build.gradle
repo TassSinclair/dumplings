@@ -28,8 +28,7 @@ configurations {
 
 dependencies {
     compile 'org.jetbrains.kotlin:kotlin-stdlib:0.6.+'
-    compile files('libs/android-support-v4.jar')
-//    compile 'commons-lang:commons-lang:2.6'
+    compile 'com.android.support:support-v4:18.0.+'
     compile 'com.googlecode.androidannotations:androidannotations-api:3.0-SNAPSHOT'
     androidannotations 'com.googlecode.androidannotations:androidannotations:3.0-SNAPSHOT'
 }

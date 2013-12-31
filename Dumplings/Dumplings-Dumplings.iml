@@ -57,7 +57,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/instrumentTest/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/instrumentTest/res" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/instrumentTest/resources" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/apk" />
       <excludeFolder url="file://$MODULE_DIR$/build/assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/bundles" />
@@ -71,7 +70,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="android-support-v4" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-18.0.0" level="project" />
     <orderEntry type="library" exported="" name="kotlin-stdlib-0.6.1910" level="project" />
     <orderEntry type="library" exported="" name="kotlin-runtime-0.6.1910" level="project" />
     <orderEntry type="library" exported="" name="androidannotations-api-3.0-SNAPSHOT" level="project" />

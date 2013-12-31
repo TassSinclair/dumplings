@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -24,7 +25,7 @@ public class AboutActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(this, HowManyPeopleActivity_.class);
+                Intent intent = new Intent(this, MainActivity_.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;
