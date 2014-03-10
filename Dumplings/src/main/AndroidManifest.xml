@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="net.sinclairstudios.android.dumplings"
-          android:versionCode="1"
-          android:versionName="@string/versionName">
+          android:versionCode="2"
+          android:versionName="20140410">
 
     <uses-sdk android:minSdkVersion="17"
-              android:targetSdkVersion="17"/>
+              android:targetSdkVersion="19"/>
 
     <application
             android:supportsRtl="true"

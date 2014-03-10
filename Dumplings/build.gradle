@@ -1,14 +1,16 @@
 buildscript {
+    ext.kotlin_version = '0.6.1910'
     repositories {
         mavenCentral()
         maven {
             url 'https://oss.sonatype.org/content/repositories/snapshots/'
         }
+//        mavenLocal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.6.+'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.6.+'
+        classpath 'com.android.tools.build:gradle:0.7.1'
         classpath 'com.googlecode.androidannotations:androidannotations-api:3.0-SNAPSHOT'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$ext.kotlin_version"
     }
 }
 apply plugin: 'android'
@@ -27,10 +29,15 @@ configurations {
 }
 
 dependencies {
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.6.+'
+//    compile 'junit:junit:4.12-SNAPSHOT'
     compile 'com.android.support:support-v4:18.0.+'
     compile 'com.googlecode.androidannotations:androidannotations-api:3.0-SNAPSHOT'
     androidannotations 'com.googlecode.androidannotations:androidannotations:3.0-SNAPSHOT'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$ext.kotlin_version"
+    compile 'org.hamcrest:hamcrest-core:1.3'
+    compile 'org.hamcrest:hamcrest-library:1.3'
+    compile 'org.mockito:mockito-core:1.9.5'
+    compile 'com.google.dexmaker:dexmaker-mockito:1.0'
 }
 
 android {
@@ -43,8 +50,13 @@ android {
     }
 
     sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-//        main.java.srcDirs += 'gen'
+        main.java.srcDir 'src/main/kotlin'
+        instumentTest.java.srcDir 'src/main/kotlin'
+//        main.java.genDirs += 'gen'
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
     }
 }
 

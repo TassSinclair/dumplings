@@ -8,3 +8,5 @@ Dumplings.iml
 .gradle/*
 build/*
 Dumplings/gen/*
+*.iml
+gradle/wrapper/*

@@ -17,6 +17,10 @@ public class DumplingRatingList implements Serializable, Iterable<DumplingRating
         this.dumplingRatings = new ArrayList<DumplingRating>(dumplingRatings);
     }
 
+    public List<DumplingRating> get() {
+        return dumplingRatings;
+    }
+
     public DumplingRating get(int index) {
         return dumplingRatings.get(index);
     }
