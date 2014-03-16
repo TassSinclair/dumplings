@@ -13,7 +13,7 @@ public class TextViewUpdater {
         this.fieldValue = fieldValue;
     }
 
-    public void update(Object value) {
+    public void update(int value) {
         textView.setText(fieldValue.replace("{}", DecimalFormat.getInstance().format(value)));
     }
 }

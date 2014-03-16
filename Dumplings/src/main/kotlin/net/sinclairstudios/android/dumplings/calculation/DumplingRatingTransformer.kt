@@ -6,13 +6,13 @@ import net.sinclairstudios.android.dumplings.domain.DumplingServingCalculation
 import java.util.ArrayList
 import net.sinclairstudios.android.dumplings.domain.Fraction
 import net.sinclairstudios.android.dumplings.domain.DumplingRating
-import net.sinclairstudios.android.dumplings.domain.DumplingOrder
+import net.sinclairstudios.android.dumplings.domain.DumplingServings
 import java.util.Collections
 
-public class DumplingRatingOrganiser(private val equaliser : DumplingCalculationEqualiser) {
+public class DumplingRatingTransformer(private val equaliser : DumplingCalculationEqualiser) {
 
     public fun organise(dumplingRatings : List<DumplingRating>, howManyPeople : Int,
-                        preferMultiplesOf : Int) : List<DumplingOrder> {
+                        preferMultiplesOf : Int) : List<DumplingServings> {
         val servingMultiplier = Fraction(1, preferMultiplesOf)
 
         val calculations = transformRatingsToCalculations(dumplingRatings, howManyPeople, servingMultiplier)
@@ -24,9 +24,9 @@ public class DumplingRatingOrganiser(private val equaliser : DumplingCalculation
 
     private fun transformRatingsToCalculations(ratings: List<DumplingRating>, howManyPeople: Int,
                                                servingMultiplier: Fraction) : List<DumplingServingCalculation> {
-        val totalRatings = ratings.fold(0, {
+        val totalRatings = Math.max(ratings.fold(0, {
             runningTotal, rating -> (runningTotal + rating.rating.value)
-        })
+        }), 1)
         return ratings.map({
             rating -> DumplingServingCalculation(rating.dumpling,
                 Fraction(rating.rating.value * howManyPeople, totalRatings) * servingMultiplier)
@@ -34,9 +34,9 @@ public class DumplingRatingOrganiser(private val equaliser : DumplingCalculation
     }
 
     private fun transformCalculationsToOrders(calculations : List<DumplingServingCalculation>,
-                                              servingMultiplier : Fraction) : List<DumplingOrder> {
+                                              servingMultiplier : Fraction) : List<DumplingServings> {
         return calculations.map({
-            calculation -> DumplingOrder(calculation.dumpling,
+            calculation -> DumplingServings(calculation.dumpling,
                                    (calculation.servings / servingMultiplier).getAsInt())
         })
     }

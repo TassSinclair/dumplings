@@ -2,7 +2,7 @@
 <resources>
     <string name="applicationName">Dumplings!</string>
     <string name="howManyServings">Nombre de portions: {}</string>
-    <string name="choicesAndRatiosName">Choix et ratios</string>
+    <string name="ratingsAndRatiosButton">Choix et ratios</string>
     <string name="yourOrderName">Votre Commande</string>
     <string name="aboutName">A propos</string>
     <string name="calculateRatiosButton">Ramène les dumplings!</string>

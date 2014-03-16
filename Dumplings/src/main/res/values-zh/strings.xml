@@ -2,7 +2,7 @@
 <resources>
     <string name="applicationName">饺子！</string>
     <string name="howManyServings">上 {} 盘饺子</string>
-    <string name="choicesAndRatiosName">点评饺子</string>
+    <string name="ratingsAndRatiosButton">点评饺子</string>
     <string name="yourOrderName">您点的饺子</string>
     <string name="aboutName">关于</string>
     <string name="calculateRatiosButton">上饺子！</string>

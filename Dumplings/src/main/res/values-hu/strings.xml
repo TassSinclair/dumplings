@@ -2,7 +2,7 @@
 <resources>
     <string name="applicationName">Gombócos!</string>
     <string name="howManyServings">Gombóc tálak száma: {}</string>
-    <string name="choicesAndRatiosName">Választék és prioritás</string>
+    <string name="ratingsAndRatiosButton">Választék és prioritás</string>
     <string name="yourOrderName">Rendelésed</string>
     <string name="aboutName">Alkalmazás info</string>
     <string name="calculateRatiosButton">Mutasd a gombócokat!</string>

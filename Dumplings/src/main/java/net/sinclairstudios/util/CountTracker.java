@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.HashSet;
 
 public class CountTracker {
-    private Collection<CountTrackerListener> listeners = new HashSet<CountTrackerListener>();
+    private final Collection<CountTrackerListener> listeners = new HashSet<CountTrackerListener>();
     private int count;
 
     public CountTracker(int count) {
@@ -21,9 +21,5 @@ public class CountTracker {
 
     public void addOnAddListener(CountTrackerListener listener) {
         listeners.add(listener);
-    }
-
-    public void removeOnAddListener(CountTrackerListener listener) {
-        listeners.remove(listener);
     }
 }

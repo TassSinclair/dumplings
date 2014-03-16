@@ -2,10 +2,10 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android"
         android:constantSize="true">
     <item android:state_checked="true"
-          android:drawable="@drawable/dumpling_yes">
+          android:drawable="@drawable/dumpling_here">
     </item>
     <item android:state_checked="false"
-          android:drawable="@drawable/dumpling_question">
+          android:drawable="@drawable/dumpling_waiting">
     </item>
 </selector>
 

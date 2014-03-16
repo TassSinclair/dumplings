@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="net.sinclairstudios.android.dumplings"
           android:versionCode="2"
-          android:versionName="20140410">
+          android:versionName="20140416">
 
     <uses-sdk android:minSdkVersion="17"
               android:targetSdkVersion="19"/>
@@ -32,8 +32,13 @@
                 android:parentActivityName="net.sinclairstudios.android.dumplings.activity.MainActivity_">
         </activity>
         <activity
-                android:name="net.sinclairstudios.android.dumplings.activity.ChoicesAndRatiosActivity_"
-                android:label="@string/choicesAndRatiosName"
+                android:name="net.sinclairstudios.android.dumplings.activity.RatingsActivity_"
+                android:label="@string/ratingsAndRatiosButton"
+                android:parentActivityName="net.sinclairstudios.android.dumplings.activity.MainActivity_">
+        </activity>
+        <activity
+                android:name="net.sinclairstudios.android.dumplings.activity.SpecificServingsActivity_"
+                android:label="@string/specificServingsButton"
                 android:parentActivityName="net.sinclairstudios.android.dumplings.activity.MainActivity_">
         </activity>
     </application>

@@ -5,9 +5,21 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.SeekBar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DumplingRatingViewHook implements TextWatcher, RatingBar.OnRatingBarChangeListener {
     private final DumplingRating dumplingRating;
+
+    public static List<DumplingRatingViewHook> createFrom(List<DumplingRating> dumplingRatings) {
+        List<DumplingRatingViewHook> ratingViewHookList = new ArrayList<DumplingRatingViewHook>();
+        for (DumplingRating dumplingRating : dumplingRatings) {
+            ratingViewHookList.add(new DumplingRatingViewHook(dumplingRating));
+        }
+        return ratingViewHookList;
+    }
 
     public DumplingRatingViewHook(DumplingRating dumplingRating) {
         this.dumplingRating = dumplingRating;

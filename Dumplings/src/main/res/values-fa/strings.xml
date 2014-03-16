@@ -2,7 +2,7 @@
 <resources>
     <string name="applicationName">دامپلینگ!</string>
     <string name="howManyServings">تعداد پرس : {}</string>
-    <string name="choicesAndRatiosName">انواع و نسبت‌ها</string>
+    <string name="ratingsAndRatiosButton">انواع و نسبت‌ها</string>
     <string name="yourOrderName">سفارش</string>
     <string name="aboutName">درباره</string>
     <string name="calculateRatiosButton">‌دامپلینگارو بیار</string>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="versionName">20140410</string>
+    <string name="versionName">20140416</string>
     <string name="applicationName">Dumplings!</string>
     <string name="howManyServings">Number of servings: {}</string>
-    <string name="choicesAndRatiosName">Choices and Ratios</string>
+    <string name="ratingsAndRatiosButton">Choose ratings...</string>
     <string name="yourOrderName">Your Order</string>
     <string name="aboutName">About</string>
     <string name="calculateRatiosButton">Show me the dumplings!</string>
@@ -11,7 +11,10 @@
     <string name="servingCountdown">Waiting for {} servings</string>
     <string name="wasMadeBy">was made by</string>
     <string name="sinclairStudiosUrl">http://sinclairstudios.net</string>
-    <string name="preferEvenServings">Prefer even servings:</string>
+    <string name="preferEvenServings">Prefer multiples of 2:</string>
+    <string name="specificServingsCheckbox">Specific servings</string>
+    <string name="specificServingsButton">Choose servings...</string>
+    <string name="ratingsAndRatiosCheckbox">From ratings</string>
     <string-array name="defaultDumplingNames">
         <item>Boiled Pork</item>
         <item>Fried Beef</item>

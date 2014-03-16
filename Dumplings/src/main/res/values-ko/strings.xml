@@ -2,7 +2,7 @@
 <resources>
     <string name="applicationName">만두!</string>
     <string name="howManyServings">접시 수: {}</string>
-    <string name="choicesAndRatiosName">선택 및 비율</string>
+    <string name="ratingsAndRatiosButton">선택 및 비율</string>
     <string name="yourOrderName">주문</string>
     <string name="aboutName">about 만두</string>
     <string name="calculateRatiosButton">만두먹으러 가자!</string>

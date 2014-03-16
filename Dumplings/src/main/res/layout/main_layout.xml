@@ -1,53 +1,170 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:paddingLeft="@dimen/activity_horizontal_margin"
-              android:paddingRight="@dimen/activity_horizontal_margin"
-              android:paddingTop="@dimen/activity_vertical_margin"
-              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:orientation="vertical"
               tools:context=".HowManyPeople"
               android:gravity="center_horizontal">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin">
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/choicesAndRatiosName"
-            android:id="@+id/choicesAndRatiosButton"
-            />
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:gravity="center"
-            android:layout_margin="8dp"
-            android:id="@+id/howManyPeopleTextView"
-            android:text="@string/howManyServings"
-            />
-    <SeekBar
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/howManyPeopleSeekBar"
-            android:layout_margin="8dp"
-            android:max="@integer/maxServings"/>
-    <Switch
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/preferEvenServings"
-            android:id="@+id/preferEvenServingsSwitch"
-            android:textSize="22sp"
-            android:layout_margin="8dp"
-            android:checked="false"
-            android:gravity="center"/>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                          android:orientation="horizontal"
+                          android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:focusableInTouchMode="false"
+                          android:focusable="false"
+                          android:paddingLeft="16dp"
+                          android:paddingTop="8dp"
+                          android:paddingRight="16dp"
+                          android:paddingBottom="8dp"
+                    >
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/calculateRatiosButton"
-            android:id="@+id/calculateRatiosButton"
-            />
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/imageView"
+                        android:src="@drawable/choices_icon"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"/>
 
-</LinearLayout>
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="100">
+
+                    <CheckBox
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/specificServingsCheckbox"
+                            android:id="@+id/specificServingsCheckbox"
+                            android:textSize="22sp"
+                            />
+
+                    <Button
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/specificServingsButton"
+                            android:id="@+id/specificServingsButton"
+                            android:layout_gravity="center_horizontal"
+                            />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                          android:orientation="horizontal"
+                          android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:focusableInTouchMode="false"
+                          android:focusable="false"
+                          android:paddingLeft="16dp"
+                          android:paddingTop="8dp"
+                          android:paddingRight="16dp"
+                          android:paddingBottom="8dp"
+                    >
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:id="@+id/imageView"
+                        android:src="@drawable/ratings_and_ratios"
+                        android:layout_marginRight="8dp"/>
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                    <CheckBox
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ratingsAndRatiosCheckbox"
+                            android:id="@+id/ratingsAndRatiosCheckbox"
+                            android:textSize="22sp"
+                            android:layout_gravity="center_horizontal"
+                            android:checked="true"
+                            android:visibility="gone"/>
+
+                    <Button
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ratingsAndRatiosButton"
+                            android:id="@+id/ratingsAndRatiosButton"
+                            android:layout_gravity="center_horizontal"
+                            />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:gravity="center"
+                    android:layout_margin="8dp"
+                    android:id="@+id/howManyPeopleTextView"
+                    android:text="@string/howManyServings"
+                    />
+
+            <SeekBar
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/howManyPeopleSeekBar"
+                    android:max="@integer/maxServings"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"/>
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="16"
+                    android:paddingEnd="24dp"
+                    android:paddingStart="24dp">
+
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/specificServingsGuide"
+                        android:src="@drawable/for_serving_bar"
+                        android:scaleType="fitXY"
+                        />
+
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingsGuide"
+                        android:src="@drawable/ratings_for_serving_bar"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
+                        />
+            </LinearLayout>
+
+            <Switch
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/preferEvenServings"
+                    android:id="@+id/preferEvenServingsSwitch"
+                    android:textSize="22sp"
+                    android:layout_margin="8dp"
+                    android:checked="false"
+                    android:gravity="center"/>
+
+            <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/calculateRatiosButton"
+                    android:id="@+id/calculateRatiosButton"
+                    />
+        </LinearLayout>
+</ScrollView>

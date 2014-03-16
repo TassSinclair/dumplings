@@ -15,21 +15,25 @@ import com.googlecode.androidannotations.annotations.EActivity;
 import com.googlecode.androidannotations.annotations.ViewById;
 
 import net.sinclairstudios.android.dumplings.R;
-import net.sinclairstudios.android.dumplings.domain.DumplingRatingList;
+import net.sinclairstudios.android.dumplings.domain.DumplingRating;
 import net.sinclairstudios.android.dumplings.domain.DumplingRatingViewHook;
 import net.sinclairstudios.android.dumplings.layout.LineSeparatorLinearLayout;
 
-@EActivity(R.layout.choices_and_ratios_layout)
-public class ChoicesAndRatiosActivity extends Activity {
+import java.util.ArrayList;
+import java.util.List;
 
-    private DumplingRatingList dumplingRatingList;
+@EActivity(R.layout.ratings_layout)
+public class RatingsActivity extends Activity {
+
+    private ArrayList<DumplingRating> dumplingRatingList;
 
     @ViewById
     protected LineSeparatorLinearLayout choicesAndRatiosRowHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        dumplingRatingList = (DumplingRatingList) getIntent().getSerializableExtra(DumplingRatingList.class.getName());
+        dumplingRatingList =
+                (ArrayList<DumplingRating>)getIntent().getSerializableExtra(DumplingRating.class.getName());
         initActionBar();
         super.onCreate(savedInstanceState);
     }
@@ -46,8 +50,9 @@ public class ChoicesAndRatiosActivity extends Activity {
     protected void hydrateRows() {
         choicesAndRatiosRowHolder.removeAllViews();
 
-        for (DumplingRatingViewHook dumplingRatingViewHook : dumplingRatingList.getDumplingRatingViewHooks()) {
-            ViewGroup row = (ViewGroup) getLayoutInflater().inflate(R.layout.choices_and_ratios_row, null);
+        List<DumplingRatingViewHook> viewHooks = DumplingRatingViewHook.createFrom(dumplingRatingList);
+        for (DumplingRatingViewHook dumplingRatingViewHook : viewHooks) {
+            ViewGroup row = (ViewGroup) getLayoutInflater().inflate(R.layout.ratings_row, null);
             EditText dumplingNameEditText = (EditText) row.findViewById(R.id.dumplingNameEditText);
 
             dumplingNameEditText.setId(choicesAndRatiosRowHolder.findUnusedId());
@@ -73,7 +78,7 @@ public class ChoicesAndRatiosActivity extends Activity {
     public void finish() {
         Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra(DumplingRatingList.class.getName(), dumplingRatingList);
+        intent.putExtra(DumplingRating.class.getName(), dumplingRatingList);
         setResult(RESULT_OK, intent);
         super.finish();
     }

@@ -5,34 +5,32 @@ import android.content.res.Resources;
 
 import net.sinclairstudios.android.dumplings.domain.Dumpling;
 import net.sinclairstudios.android.dumplings.domain.DumplingRating;
-import net.sinclairstudios.android.dumplings.domain.DumplingRatingList;
 import net.sinclairstudios.android.dumplings.domain.Rating;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
-public class DumplingsRatingListDataController implements DataController<DumplingRatingList> {
+public class DumplingsRatingsDataController implements DataController<ArrayList<DumplingRating>> {
 
-    private DumplingRatingList dumplingRatingList;
+    private ArrayList<DumplingRating> dumplingRatings;
 
-    public DumplingsRatingListDataController() {
+    public DumplingsRatingsDataController() {
         reset();
     }
 
     @Override
     public void reset() {
-        this.dumplingRatingList = new DumplingRatingList();
+        this.dumplingRatings = new ArrayList<DumplingRating>();
     }
 
     @Override
-    public DumplingRatingList get() {
-        return dumplingRatingList;
+    public ArrayList<DumplingRating> get() {
+        return dumplingRatings;
     }
 
     @Override
-    public void set(DumplingRatingList it) {
-        this.dumplingRatingList = it;
+    public void set(ArrayList<DumplingRating> it) {
+        this.dumplingRatings = it;
     }
 
     public void populate(Resources resources) {
@@ -43,28 +41,27 @@ public class DumplingsRatingListDataController implements DataController<Dumplin
     }
 
     private void populateFromValues(String[] names, int[] ratings) {
-        List<DumplingRating> dumplingRatios = new ArrayList<DumplingRating>();
+        this.dumplingRatings = new ArrayList<DumplingRating>();
         for(int i = 0; i < names.length; ++i) {
-            dumplingRatios.add(new DumplingRating(new Dumpling(names[i]), new Rating(ratings[i])));
+            dumplingRatings.add(new DumplingRating(new Dumpling(names[i]), new Rating(ratings[i])));
         }
-        dumplingRatingList = new DumplingRatingList(dumplingRatios);
     }
 
     public void depopulate(SharedPreferences.Editor editor) {
         StringBuilder builder = new StringBuilder();
-        for (DumplingRating dumplingRating : dumplingRatingList) {
+        for (DumplingRating dumplingRating : dumplingRatings) {
             builder
                     .append(dumplingRating.getDumpling().getName().replace(";", "").replace(":", ""))
                     .append(":")
                     .append(dumplingRating.getRating().getValue())
                     .append(";");
         }
-        editor.putString(DumplingRatingList.class.getName(), builder.toString());
+        editor.putString(DumplingRating.class.getName(), builder.toString());
         editor.commit();
     }
 
     public void populate(SharedPreferences preferences) {
-        String preferencesString = preferences.getString(DumplingRatingList.class.getName(), "");
+        String preferencesString = preferences.getString(DumplingRating.class.getName(), "");
         StringTokenizer tokenizer = new StringTokenizer(preferencesString, ";");
         String[] names = new String[tokenizer.countTokens()];
         int[] ratings = new int[tokenizer.countTokens()];
@@ -72,6 +69,7 @@ public class DumplingsRatingListDataController implements DataController<Dumplin
         while (tokenizer.hasMoreTokens()) {
             String nextToken = tokenizer.nextToken();
             names[i] = nextToken.substring(0, nextToken.indexOf(':'));
+            // Limitation: Only works for integer values less than 10.
             ratings[i] = Integer.parseInt(nextToken.substring(nextToken.indexOf(':') + 1));
             ++i;
         }

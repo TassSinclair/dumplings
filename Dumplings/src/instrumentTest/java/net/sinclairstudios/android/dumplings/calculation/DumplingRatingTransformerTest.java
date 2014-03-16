@@ -18,22 +18,22 @@ import static org.mockito.ArgumentCaptor.forClass;
 import static org.mockito.Mockito.*;
 
 
-public class DumplingRatingOrganiserTest extends TestCase {
+public class DumplingRatingTransformerTest extends TestCase {
 
     private DumplingCalculationEqualiser mockEqualiser;
-    private DumplingRatingOrganiser organiser;
+    private DumplingRatingTransformer transformer;
 
     @Override
     protected void setUp() throws Exception {
         mockEqualiser = mock(DumplingCalculationEqualiser.class);
-        organiser = new DumplingRatingOrganiser(mockEqualiser);
+        transformer = new DumplingRatingTransformer(mockEqualiser);
     }
 
     public void testShouldTransformDumplingRatingsIntoDumplingOrders() {
         DumplingRating rating1 = dumplingRatingWithRating(new Rating(5));
         DumplingRating rating2 = dumplingRatingWithRating(new Rating(3));
 
-        List<DumplingOrder> orders = organiser.organise(Arrays.asList(rating1, rating2), 1, 1);
+        List<DumplingServings> orders = transformer.organise(Arrays.asList(rating1, rating2), 1, 1);
 
         assertThat(orders, contains(
                 orderFor(rating1.getDumpling()),
@@ -46,7 +46,7 @@ public class DumplingRatingOrganiserTest extends TestCase {
 
         DumplingRating rating1 = dumplingRatingWithRating(new Rating(1));
 
-        organiser.organise(Arrays.asList(rating1), 1, 1);
+        transformer.organise(Arrays.asList(rating1), 1, 1);
 
         verify(mockEqualiser).equalise(calculationCaptor.capture());
 
@@ -61,7 +61,7 @@ public class DumplingRatingOrganiserTest extends TestCase {
         DumplingRating rating1 = dumplingRatingWithRating(new Rating(5));
         DumplingRating rating2 = dumplingRatingWithRating(new Rating(3));
 
-        organiser.organise(Arrays.asList(rating1, rating2), 1, 1);
+        transformer.organise(Arrays.asList(rating1, rating2), 1, 1);
 
         verify(mockEqualiser).equalise(calculationCaptor.capture());
 
@@ -77,7 +77,7 @@ public class DumplingRatingOrganiserTest extends TestCase {
         DumplingRating rating1 = dumplingRatingWithRating(new Rating(5));
         DumplingRating rating2 = dumplingRatingWithRating(new Rating(3));
 
-        organiser.organise(Arrays.asList(rating1, rating2), 5, 1);
+        transformer.organise(Arrays.asList(rating1, rating2), 5, 1);
 
         verify(mockEqualiser).equalise(calculationCaptor.capture());
 
@@ -93,7 +93,7 @@ public class DumplingRatingOrganiserTest extends TestCase {
         DumplingRating rating1 = dumplingRatingWithRating(new Rating(5));
         DumplingRating rating2 = dumplingRatingWithRating(new Rating(3));
 
-        organiser.organise(Arrays.asList(rating1, rating2), 1, 2);
+        transformer.organise(Arrays.asList(rating1, rating2), 1, 2);
 
         verify(mockEqualiser).equalise(calculationCaptor.capture());
 
@@ -118,7 +118,7 @@ public class DumplingRatingOrganiserTest extends TestCase {
             }
         }).when(mockEqualiser).equalise(anyList());
 
-        List<DumplingOrder> dumplingOrders = organiser.organise(Arrays.asList(rating1, rating2), 1, 1);
+        List<DumplingServings> dumplingOrders = transformer.organise(Arrays.asList(rating1, rating2), 1, 1);
 
 
         assertThat(dumplingOrders, contains(
@@ -142,7 +142,7 @@ public class DumplingRatingOrganiserTest extends TestCase {
             }
         }).when(mockEqualiser).equalise(anyList());
 
-        List<DumplingOrder> dumplingOrders = organiser.organise(Arrays.asList(rating1, rating2), 1, 3);
+        List<DumplingServings> dumplingOrders = transformer.organise(Arrays.asList(rating1, rating2), 1, 3);
 
 
         assertThat(dumplingOrders, contains(
@@ -173,19 +173,19 @@ public class DumplingRatingOrganiserTest extends TestCase {
         };
     }
 
-    private Matcher<DumplingOrder> orderFor(final Dumpling dumpling) {
-        return new CustomTypeSafeMatcher<DumplingOrder>("Order for " + dumpling) {
+    private Matcher<DumplingServings> orderFor(final Dumpling dumpling) {
+        return new CustomTypeSafeMatcher<DumplingServings>("Order for " + dumpling) {
             @Override
-            protected boolean matchesSafely(DumplingOrder dumplingRating) {
+            protected boolean matchesSafely(DumplingServings dumplingRating) {
                 return dumplingRating.getDumpling() == dumpling;
             }
         };
     }
 
-    private Matcher<DumplingOrder> orderWithServings(final int servings) {
-        return new CustomTypeSafeMatcher<DumplingOrder>("Order with servings " + servings) {
+    private Matcher<DumplingServings> orderWithServings(final int servings) {
+        return new CustomTypeSafeMatcher<DumplingServings>("Order with servings " + servings) {
             @Override
-            protected boolean matchesSafely(DumplingOrder dumplingRating) {
+            protected boolean matchesSafely(DumplingServings dumplingRating) {
                 return dumplingRating.getServings() == servings;
             }
         };
