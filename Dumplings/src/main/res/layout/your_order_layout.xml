@@ -18,13 +18,13 @@
             android:layout_height="fill_parent"
             android:id="@+id/dumplingScrollable"
             android:layout_weight="1">
-        <net.sinclairstudios.android.dumplings.layout.LineSeparatorLinearLayout
+        <net.sinclairstudios.dumplings.layout.LineSeparatorLinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:descendantFocusability="beforeDescendants"
                 android:focusableInTouchMode="true"
                 android:id="@+id/yourOrderRowHolder">
-        </net.sinclairstudios.android.dumplings.layout.LineSeparatorLinearLayout>
+        </net.sinclairstudios.dumplings.layout.LineSeparatorLinearLayout>
     </ScrollView>
 </LinearLayout>
