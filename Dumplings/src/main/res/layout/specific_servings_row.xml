@@ -16,7 +16,7 @@
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:id="@+id/imageView"
+            android:id="@+id/dumplingImage"
             android:src="@drawable/dumpling"
             android:layout_marginRight="8dp"
             android:focusable="true"
@@ -31,13 +31,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1">
-            <EditText
+            <AutoCompleteTextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:editable="false"
                     android:clickable="false"
                     android:capitalize="words"
                     android:hint="@string/dumplingTypeHint"
+                    android:completionThreshold="1"
                     android:singleLine="true"
                     android:textSize="22sp"
                     android:id="@+id/dumplingNameEditText"

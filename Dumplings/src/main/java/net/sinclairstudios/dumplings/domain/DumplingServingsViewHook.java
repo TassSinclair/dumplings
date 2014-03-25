@@ -121,4 +121,8 @@ public class DumplingServingsViewHook {
         seekBar.setOnSeekBarChangeListener(onSeekBarChangeListener);
         onSeekBarChangeListener.onProgressChanged(seekBar, seekBar.getProgress(), false);
     }
+
+    public DumplingServings getDumplingServings() {
+        return dumplingServings;
+    }
 }

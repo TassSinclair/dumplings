@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="defaultDumplingIcons">
+        <item>@drawable/pork_dumpling</item>
+        <item>@drawable/beef_dumpling</item>
+        <item>@drawable/prawn_dumpling</item>
+        <item>@drawable/pork_dumpling</item>
+        <item>@drawable/beef_dumpling</item>
+    </array>
+</resources>

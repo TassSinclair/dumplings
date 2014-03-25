@@ -7,7 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 
 import com.googlecode.androidannotations.annotations.AfterViews;
@@ -18,6 +19,7 @@ import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.domain.DumplingRating;
 import net.sinclairstudios.dumplings.domain.DumplingRatingViewHook;
 import net.sinclairstudios.dumplings.layout.LineSeparatorLinearLayout;
+import net.sinclairstudios.dumplings.widgets.DumplingNameAutocompleteAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,13 +50,17 @@ public class RatingsActivity extends Activity {
 
     @AfterViews
     protected void hydrateRows() {
+        DumplingNameAutocompleteAdapterFactory adapterFactory = new DumplingNameAutocompleteAdapterFactory(this);
         choicesAndRatiosRowHolder.removeAllViews();
 
         List<DumplingRatingViewHook> viewHooks = DumplingRatingViewHook.createFrom(dumplingRatingList);
         for (DumplingRatingViewHook dumplingRatingViewHook : viewHooks) {
             ViewGroup row = (ViewGroup) getLayoutInflater().inflate(R.layout.ratings_row, null);
-            EditText dumplingNameEditText = (EditText) row.findViewById(R.id.dumplingNameEditText);
-
+            AutoCompleteTextView dumplingNameEditText =
+                    (AutoCompleteTextView) row.findViewById(R.id.dumplingNameEditText);
+            dumplingNameEditText.setAdapter(adapterFactory.createAdapter());
+            dumplingNameEditText.addTextChangedListener(adapterFactory
+                    .createListener((ImageView) row.findViewById(R.id.dumplingImage)));
             dumplingNameEditText.setId(choicesAndRatiosRowHolder.findUnusedId());
             RatingBar dumplingRatingBar = (RatingBar) row.findViewById(R.id.dumplingRatioRatingBar);
             dumplingRatingBar.setId(choicesAndRatiosRowHolder.findUnusedId());

@@ -1,6 +1,7 @@
 package net.sinclairstudios.dumplings.calculation;
 
 import junit.framework.TestCase;
+import net.sinclairstudios.dumplings.domain.*;
 import org.hamcrest.CustomTypeSafeMatcher;
 import org.hamcrest.Matcher;
 import org.mockito.ArgumentCaptor;
@@ -10,7 +11,6 @@ import org.mockito.stubbing.Answer;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.mockito.ArgumentCaptor.forClass;

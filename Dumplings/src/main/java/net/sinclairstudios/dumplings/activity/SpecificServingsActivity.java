@@ -7,8 +7,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.AutoCompleteTextView;
 
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import com.googlecode.androidannotations.annotations.AfterViews;
@@ -16,10 +17,10 @@ import com.googlecode.androidannotations.annotations.EActivity;
 import com.googlecode.androidannotations.annotations.ViewById;
 
 import net.sinclairstudios.dumplings.R;
-import net.sinclairstudios.dumplings.domain.DumplingRating;
 import net.sinclairstudios.dumplings.domain.DumplingServings;
 import net.sinclairstudios.dumplings.domain.DumplingServingsViewHook;
 import net.sinclairstudios.dumplings.layout.LineSeparatorLinearLayout;
+import net.sinclairstudios.dumplings.widgets.DumplingNameAutocompleteAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,12 +51,17 @@ public class SpecificServingsActivity extends Activity {
 
     @AfterViews
     protected void hydrateRows() {
+        DumplingNameAutocompleteAdapterFactory adapterFactory = new DumplingNameAutocompleteAdapterFactory(this);
         specificServingsRowHolder.removeAllViews();
 
         List<DumplingServingsViewHook> viewHooks = DumplingServingsViewHook.createFrom(dumplingServings);
         for (DumplingServingsViewHook viewHook : viewHooks) {
             ViewGroup row = (ViewGroup) getLayoutInflater().inflate(R.layout.specific_servings_row, null);
-            EditText dumplingNameEditText = (EditText) row.findViewById(R.id.dumplingNameEditText);
+            AutoCompleteTextView dumplingNameEditText =
+                    (AutoCompleteTextView) row.findViewById(R.id.dumplingNameEditText);
+            dumplingNameEditText.setAdapter(adapterFactory.createAdapter());
+            dumplingNameEditText.addTextChangedListener(adapterFactory
+                    .createListener((ImageView) row.findViewById(R.id.dumplingImage)));
             TextView dumplingNameTextView = (TextView) row.findViewById(R.id.dumplingServingCountTextView);
 
             dumplingNameEditText.setId(specificServingsRowHolder.findUnusedId());

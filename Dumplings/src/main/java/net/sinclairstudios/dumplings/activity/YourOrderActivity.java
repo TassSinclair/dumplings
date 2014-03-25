@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.domain.DumplingServings;
 import net.sinclairstudios.dumplings.domain.DumplingServingsViewHook;
 import net.sinclairstudios.dumplings.layout.LineSeparatorLinearLayout;
+import net.sinclairstudios.dumplings.widgets.DumplingNameAutocompleteAdapterFactory;
 import net.sinclairstudios.util.CountTracker;
 import net.sinclairstudios.util.TextViewUpdatingCountTrackerListener;
 
@@ -48,6 +50,7 @@ public class YourOrderActivity extends Activity {
 
     @AfterViews
     protected void initRows() {
+        DumplingNameAutocompleteAdapterFactory adapterFactory = new DumplingNameAutocompleteAdapterFactory(this);
         int totalDumplings = 0;
         for (DumplingServings dumplingOrder : dumplingServings) {
             totalDumplings += dumplingOrder.getServings();
@@ -62,9 +65,17 @@ public class YourOrderActivity extends Activity {
         for (DumplingServingsViewHook dumplingServingsViewHook : viewHooks) {
             View repeatableDumplingRowLayout = getLayoutInflater().inflate(R.layout.your_order_row, null);
             yourOrderRowHolder.addView(repeatableDumplingRowLayout);
-            dumplingServingsViewHook.bind((TextView) repeatableDumplingRowLayout.findViewById(R.id.dumplingNameTextView),
+
+            TextView dumplingNameTextView = (TextView)
+                    repeatableDumplingRowLayout.findViewById(R.id.dumplingNameTextView);
+            ImageView dumplingImageView = (ImageView) repeatableDumplingRowLayout.findViewById(R.id.dumplingImage);
+
+            dumplingServingsViewHook.bind(dumplingNameTextView,
                     (TableLayout) repeatableDumplingRowLayout.findViewById(R.id.dumplingCheckboxHolder),
                     masterCountTracker, this);
+
+            adapterFactory.updateDumplingImageFromLabel(
+                    dumplingServingsViewHook.getDumplingServings().getDumpling().getName(), dumplingImageView);
         }
     }
 

@@ -48,12 +48,6 @@ public class MainActivity extends FragmentActivity {
     protected Button specificServingsButton;
 
     @ViewById
-    protected CheckBox ratingsAndRatiosCheckbox;
-
-    @ViewById
-    protected Button ratingsAndRatiosButton;
-
-    @ViewById
     protected TextView howManyPeopleTextView;
 
     @ViewById
@@ -144,10 +138,6 @@ public class MainActivity extends FragmentActivity {
         specificServingsCheckbox.setOnCheckedChangeListener(
                 onCheckedChangeListener);
         onCheckedChangeListener.onCheckedChanged(specificServingsCheckbox, specificServingsCheckbox.isChecked());
-
-        onCheckedChangeListener = createEnableButtonWhenCheckedListener(ratingsAndRatiosButton);
-        ratingsAndRatiosCheckbox.setOnCheckedChangeListener(onCheckedChangeListener);
-        onCheckedChangeListener.onCheckedChanged(ratingsAndRatiosCheckbox, ratingsAndRatiosCheckbox.isChecked());
     }
 
     private int countAllDumplingServings(List<DumplingServings> dumplingServingsList) {
