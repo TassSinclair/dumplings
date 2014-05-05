@@ -22,14 +22,20 @@ public open class DumplingCalculationEqualiser {
 
     private fun filterCalculationsWithRemainders(calculations: List<DumplingServingCalculation>) :
             List<DumplingServingCalculation> {
-        return calculations.filter({ calculation -> calculation.servings.hasRemainder()});
+        return calculations.filter({
+            calculation -> calculation.servings.hasRemainder()
+        });
     }
 
     private fun findLowestRemainder(calculations: List<DumplingServingCalculation>) : DumplingServingCalculation {
-        return calculations.minBy({ quantity -> quantity.servings.getRemainder() }) ?: calculations.first()
+        return calculations.minBy({
+            quantity -> quantity.servings.getRemainder()
+        }) ?: calculations.first()
     }
 
     private fun findHighestRemainder(calculations: List<DumplingServingCalculation>) : DumplingServingCalculation {
-        return calculations.maxBy({ quantity -> quantity.servings.getRemainder() }) ?: calculations.first()
+        return calculations.maxBy({
+            quantity -> quantity.servings.getRemainder()
+        }) ?: calculations.first()
     }
 }
