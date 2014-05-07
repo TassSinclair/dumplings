@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Appears on main screen and on action bar of main screen. Should be enthusiastic and excitable. -->
     <string name="applicationName">만두!</string>
+    <!-- Appears on the main screen to represent how many servings have been chosen on the "How many servings" seekbar.
+         The {} will be replaced with a localised number, so move it to anywhere in the sentence where it makes sense
+         to refer to the number of servings mid-sentence (or after a column, or whatever). -->
     <string name="howManyServings">접시 수: {}</string>
+    <!-- A label on the main activity for a checkbox that enables or disables "specific servings" criteria. -->
+    <string name="specificServingsCheckbox">Specific servings</string>
+    <!-- Appears on the main activity on the button leading to the specific dumpling choices screen and appears as the
+         title for the "Choose specific servings" activity.-->
+    <string name="specificServingsButton">Choose servings</string>
+    <!-- Appears on the main activity on the button leading to the dumpling ratings screen and appears as the title for
+         the "Choose ratings" activity.-->
     <string name="ratingsAndRatiosButton">선택 및 비율</string>
+    <!-- Title of the "Your order" activity, where the user's final order is displayed. -->
     <string name="yourOrderName">주문</string>
+    <!-- A link in the menu leading to the "About" screen (version number, credits, etc). -->
     <string name="aboutName">about 만두</string>
+    <!-- Appears at the bottom of the main activity on a button leading to the "Your order" activity. Should be
+         enthusiastic, something eager and fun like "Show me the dumplings!" or "Bring on the dumplings!". -->
     <string name="calculateRatiosButton">만두먹으러 가자!</string>
+    <!-- A hint to be shown in empty "dumpling name" edittext fields to act as a clue for what the user should type in
+         the fields. -->
     <string name="dumplingTypeHint">만두 메뉴?</string>
+    <!-- Appears on the "Your order" activity as a reminder of how many servings we have ordered but have not yet
+         arrived. -->
     <string name="servingCountdown">{} 메뉴 대기</string>
+    <!-- A simple string to prefix the developer's name on the About activity. It will read like:
+         "Dumplings! ... was made by ... Sinclair Studios". This may not make sense in all localisations. In this is
+         the case, leave this string blank. If you populate this string, don't populate the madeThis string. -->
     <string name="wasMadeBy">회사 소개</string>
+    <!-- A simple string to postfix the developer's name on the About activity. It will read like:
+         "Dumplings! ... Sinclair Studios ... made this". This may not make sense in all localisations. In this is
+         the case, leave this string blank. If you populate this string, don't populate the wasMadeBy string. -->
+    <string name="madeThis"></string>
+    <!-- Shown as a label on the main activity for the "prefer 2x multiplier" switch. This is a difficult concept
+         to convey in such a short label. If this switch is selected, the application will prefer to use even
+         servings. -->
+    <string name="preferEvenServings">Prefer multiples of 2:</string>
+    <!-- Accessibility text that describes the functionality of the seekbar range bracket for "specific servings". The
+         {} will be replaced with a localised number, and can be moved to anywhere in the string. -->
+    <string name="howManyWillBePickedFromSpecificServings">{} will be picked from specific servings</string>
+    <!-- Accessibility text that describes the functionality of the seekbar range bracket for "ratings". The
+         {} will be replaced with a localised number, and can be moved to anywhere in the string. -->
+    <string name="howManyWillBePickedFromRatings">{} will be picked from ratings</string>
+    <!-- Default dumpling names. Exactly how they would be represented on a localised menu. -->
     <string-array name="defaultDumplingNames">
         <item>찐 돼지고기</item>
         <item>튀긴 소고기</item>

@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Appears on main screen and on action bar of main screen. Should be enthusiastic and excitable. -->
-    <string name="applicationName">饺子！</string>
+    <string name="applicationName">Dumplings!</string>
     <!-- Appears on the main screen to represent how many servings have been chosen on the "How many servings" seekbar.
          The {} will be replaced with a localised number, so move it to anywhere in the sentence where it makes sense
          to refer to the number of servings mid-sentence (or after a column, or whatever). -->
-    <string name="howManyServings">上 {} 盘饺子</string>
+    <string name="howManyServings">Number of servings: {}</string>
     <!-- A label on the main activity for a checkbox that enables or disables "specific servings" criteria. -->
-    <string name="specificServingsCheckbox">特别服务</string>
+    <string name="specificServingsCheckbox">Specific servings</string>
     <!-- Appears on the main activity on the button leading to the specific dumpling choices screen and appears as the
          title for the "Choose specific servings" activity.-->
-    <string name="specificServingsButton">选择服务</string>
+    <string name="specificServingsButton">Choose servings</string>
     <!-- Appears on the main activity on the button leading to the dumpling ratings screen and appears as the title for
          the "Choose ratings" activity.-->
-    <string name="ratingsAndRatiosButton">点评饺子</string>
+    <string name="ratingsAndRatiosButton">Choose ratings</string>
     <!-- Title of the "Your order" activity, where the user's final order is displayed. -->
-    <string name="yourOrderName">您点的饺子</string>
+    <string name="yourOrderName">Your order</string>
     <!-- A link in the menu leading to the "About" screen (version number, credits, etc). -->
-    <string name="aboutName">关于</string>
+    <string name="aboutName">About</string>
     <!-- Appears at the bottom of the main activity on a button leading to the "Your order" activity. Should be
          enthusiastic, something eager and fun like "Show me the dumplings!" or "Bring on the dumplings!". -->
-    <string name="calculateRatiosButton">上饺子！</string>
+    <string name="calculateRatiosButton">Show me the dumplings!</string>
     <!-- A hint to be shown in empty "dumpling name" edittext fields to act as a clue for what the user should type in
          the fields. -->
-    <string name="dumplingTypeHint">饺子的馅？</string>
+    <string name="dumplingTypeHint">Dumpling Name?</string>
     <!-- Appears on the "Your order" activity as a reminder of how many servings we have ordered but have not yet
          arrived. -->
-    <string name="servingCountdown">还在等 {} 盘饺子</string>
+    <string name="servingCountdown">Waiting for {} servings</string>
     <!-- A simple string to prefix the developer's name on the About activity. It will read like:
          "Dumplings! ... was made by ... Sinclair Studios". This may not make sense in all localisations. In this is
          the case, leave this string blank. If you populate this string, don't populate the madeThis string. -->
-    <string name="wasMadeBy"/>
+    <string name="wasMadeBy">was made by</string>
     <!-- A simple string to postfix the developer's name on the About activity. It will read like:
          "Dumplings! ... Sinclair Studios ... made this". This may not make sense in all localisations. In this is
          the case, leave this string blank. If you populate this string, don't populate the wasMadeBy string. -->
-    <string name="madeThis">荣誉出品</string>
+    <string name="madeThis"></string>
     <!-- Shown as a label on the main activity for the "prefer 2x multiplier" switch. This is a difficult concept
          to convey in such a short label. If this switch is selected, the application will prefer to use even
          servings. -->
-    <string name="preferEvenServings">上双份：</string>
+    <string name="preferEvenServings">Prefer multiples of 2:</string>
     <!-- Accessibility text that describes the functionality of the seekbar range bracket for "specific servings". The
          {} will be replaced with a localised number, and can be moved to anywhere in the string. -->
-    <string name="howManyWillBePickedFromSpecificServings">{} 盘饺子会由特别服务上来</string>
+    <string name="howManyWillBePickedFromSpecificServings">{} will be picked from specific servings</string>
     <!-- Accessibility text that describes the functionality of the seekbar range bracket for "ratings". The
          {} will be replaced with a localised number, and can be moved to anywhere in the string. -->
-    <string name="howManyWillBePickedFromRatings">{} 盘饺子会由点评上来</string>
+    <string name="howManyWillBePickedFromRatings">{} will be picked from ratings</string>
     <!-- Default dumpling names. Exactly how they would be represented on a localised menu. -->
     <string-array name="defaultDumplingNames">
-        <item>猪肉馅</item>
-        <item>煎牛肉馅</item>
-        <item>鸡肉虾仁馅</item>
-        <item>煎猪肉馅</item>
-        <item>牛肉馅</item>
+        <item>Boiled Pork</item><!-- Boiled pork -->
+        <item>Fried Beef</item><!-- Fried beef -->
+        <item>Boiled Chicken &amp; Prawn</item><!-- Boiled Chicken & Prawn -->
+        <item>Fried Pork</item><!-- Fried pork -->
+        <item>Boiled Beef</item><!-- Boiled beef -->
     </string-array>
 </resources>
