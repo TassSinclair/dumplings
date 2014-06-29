@@ -11,6 +11,7 @@ import org.mockito.stubbing.Answer;
 import java.util.Arrays;
 import java.util.List;
 
+import static net.sinclairstudios.dumplings.DumplingMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.mockito.ArgumentCaptor.forClass;
@@ -121,8 +122,8 @@ public class DumplingRatingTransformerTest extends TestCase {
 
 
         assertThat(dumplingOrders, contains(
-                orderWithServings(1),
-                orderWithServings(2)
+                servingsWithServings(1),
+                servingsWithServings(2)
         ));
     }
 
@@ -145,48 +146,12 @@ public class DumplingRatingTransformerTest extends TestCase {
 
 
         assertThat(dumplingOrders, contains(
-                orderWithServings(1),
-                orderWithServings(3)
+                servingsWithServings(1),
+                servingsWithServings(3)
         ));
     }
 
     private DumplingRating dumplingRatingWithRating(Rating rating) {
         return new DumplingRating(mock(Dumpling.class), rating);
-    }
-
-    private Matcher<DumplingServingCalculation> calculationForDumpling(final Dumpling dumpling) {
-        return new CustomTypeSafeMatcher<DumplingServingCalculation>("Calculation for " + dumpling) {
-            @Override
-            protected boolean matchesSafely(DumplingServingCalculation dumplingServingCalculation) {
-                return dumplingServingCalculation.getDumpling() == dumpling;
-            }
-        };
-    }
-
-    private Matcher<DumplingServingCalculation> calculationWithFraction(final Fraction servings) {
-        return new CustomTypeSafeMatcher<DumplingServingCalculation>("Calculation with fraction " + servings) {
-            @Override
-            protected boolean matchesSafely(DumplingServingCalculation dumplingServingCalculation) {
-                return dumplingServingCalculation.getServings().equals(servings);
-            }
-        };
-    }
-
-    private Matcher<DumplingServings> orderFor(final Dumpling dumpling) {
-        return new CustomTypeSafeMatcher<DumplingServings>("Order for " + dumpling) {
-            @Override
-            protected boolean matchesSafely(DumplingServings dumplingRating) {
-                return dumplingRating.getDumpling() == dumpling;
-            }
-        };
-    }
-
-    private Matcher<DumplingServings> orderWithServings(final int servings) {
-        return new CustomTypeSafeMatcher<DumplingServings>("Order with servings " + servings) {
-            @Override
-            protected boolean matchesSafely(DumplingServings dumplingRating) {
-                return dumplingRating.getServings() == servings;
-            }
-        };
     }
 }

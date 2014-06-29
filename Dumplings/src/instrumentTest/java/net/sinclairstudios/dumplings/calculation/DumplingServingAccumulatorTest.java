@@ -9,6 +9,7 @@ import org.hamcrest.Matcher;
 import java.util.Arrays;
 import java.util.List;
 
+import static net.sinclairstudios.dumplings.DumplingMatchers.servingsWithNameAndServings;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
 import static org.mockito.Mockito.mock;
@@ -45,16 +46,6 @@ public class DumplingServingAccumulatorTest extends TestCase {
                 servingsWithNameAndServings("1", 4),
                 servingsWithNameAndServings("2", 6)
         ));
-    }
-
-    private Matcher<DumplingServings> servingsWithNameAndServings(final String name, final int servings) {
-        return new CustomTypeSafeMatcher<DumplingServings>("Dumpling " + name + " with " + servings + " servings") {
-            @Override
-            protected boolean matchesSafely(DumplingServings dumplingServings) {
-                return dumplingServings.getDumpling().getName().equals(name)
-                        && dumplingServings.getServings() == servings;
-            }
-        };
     }
 
     private DumplingServings createServingsWithNameAndServings(String dumplingName, int servings) {

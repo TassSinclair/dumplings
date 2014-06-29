@@ -10,9 +10,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/servingCountdownTextView"
-            android:background="@android:color/darker_gray"
-            android:textAppearance="@style/GreyBarText"
-            android:padding="12dp"
+            style="@style/SubBar"
             android:gravity="center_horizontal"
             />
 
@@ -23,7 +21,7 @@
             android:layout_weight="1"
             >
 
-        <net.sinclairstudios.dumplings.layout.LineSeparatorLinearLayout
+        <net.sinclairstudios.dumplings.ui.layout.LineSeparatorLinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

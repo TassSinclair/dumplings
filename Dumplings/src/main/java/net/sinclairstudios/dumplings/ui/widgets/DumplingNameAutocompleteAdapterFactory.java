@@ -1,10 +1,9 @@
-package net.sinclairstudios.dumplings.widgets;
+package net.sinclairstudios.dumplings.ui.widgets;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import net.sinclairstudios.dumplings.R;

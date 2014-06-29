@@ -10,10 +10,10 @@
          The {} will be replaced with a localised number, so move it to anywhere in the sentence where it makes sense
          to refer to the number of servings mid-sentence (or after a column, or whatever). -->
     <string name="howManyServings">Number of servings: {}</string>
-    <!-- A label on the main activity for a checkbox that enables or disables "specific servings" criteria. -->
-    <string name="specificServingsCheckbox">Specific servings</string>
     <!-- Appears on the main activity on the button leading to the specific dumpling choices screen and appears as the
          title for the "Choose specific servings" activity.-->
+    <string name="specificServingsLabel">Specific servings</string>
+    <string name="ratingsAndRatiosLabel">Ratings</string>
     <string name="specificServingsButton">Choose servings</string>
     <!-- Appears on the main activity on the button leading to the dumpling ratings screen and appears as the title for
          the "Choose ratings" activity.-->
@@ -38,7 +38,7 @@
     <!-- A simple string to postfix the developer's name on the About activity. It will read like:
          "Dumplings! ... Sinclair Studios ... made this". This may not make sense in all localisations. In this is
          the case, leave this string blank. If you populate this string, don't populate the wasMadeBy string. -->
-    <string name="madeThis"></string>
+    <string name="madeThis"/>
     <!-- Shown as a label on the main activity for the "prefer 2x multiplier" switch. This is a difficult concept
          to convey in such a short label. If this switch is selected, the application will prefer to use even
          servings. -->

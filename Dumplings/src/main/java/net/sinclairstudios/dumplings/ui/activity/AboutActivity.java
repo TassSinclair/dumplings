@@ -1,4 +1,4 @@
-package net.sinclairstudios.dumplings.activity;
+package net.sinclairstudios.dumplings.ui.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -7,9 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.googlecode.androidannotations.annotations.EActivity;
-
 import net.sinclairstudios.dumplings.R;
 
 @EActivity(R.layout.about_layout)
@@ -22,7 +20,7 @@ public class AboutActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 Intent intent = new Intent(this, MainActivity_.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -33,6 +31,7 @@ public class AboutActivity extends Activity {
     }
 
     public void openBrowserToSinclairStudiosWebsite(View button) {
+
         startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(getString(R.string.sinclairStudiosUrl))));
     }
 }

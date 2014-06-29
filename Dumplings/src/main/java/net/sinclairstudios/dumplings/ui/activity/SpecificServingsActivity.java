@@ -1,4 +1,4 @@
-package net.sinclairstudios.dumplings.activity;
+package net.sinclairstudios.dumplings.ui.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -19,8 +19,8 @@ import com.googlecode.androidannotations.annotations.ViewById;
 import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.domain.DumplingServings;
 import net.sinclairstudios.dumplings.domain.DumplingServingsViewHook;
-import net.sinclairstudios.dumplings.layout.LineSeparatorLinearLayout;
-import net.sinclairstudios.dumplings.widgets.DumplingNameAutocompleteAdapterFactory;
+import net.sinclairstudios.dumplings.ui.layout.LineSeparatorLinearLayout;
+import net.sinclairstudios.dumplings.ui.widgets.DumplingNameAutocompleteAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.List;

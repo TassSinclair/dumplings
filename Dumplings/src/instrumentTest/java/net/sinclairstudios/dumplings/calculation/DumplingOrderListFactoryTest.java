@@ -10,6 +10,7 @@ import org.hamcrest.Matcher;
 import java.util.Arrays;
 import java.util.List;
 
+import static net.sinclairstudios.dumplings.DumplingMatchers.servingsWithServings;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.mockito.Mockito.mock;
@@ -55,15 +56,6 @@ public class DumplingOrderListFactoryTest extends TestCase {
         assertThat(limitedServings, contains(
                 servingsWithServings(4)
         ));
-    }
-
-    private Matcher<DumplingServings> servingsWithServings(final int servings) {
-        return new CustomTypeSafeMatcher<DumplingServings>("Servings with servings " + servings) {
-            @Override
-            protected boolean matchesSafely(DumplingServings dumplingServings) {
-                return dumplingServings.getServings() == servings;
-            }
-        };
     }
 
     private DumplingServings createServingsWithServings(int servings) {

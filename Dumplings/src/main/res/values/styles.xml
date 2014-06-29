@@ -29,8 +29,11 @@
     </style>
 
 
-    <style name="GreyBarText">
-        <item name="android:textColor">@android:color/white</item>
+    <style name="SubBar">
+        <item name="android:background">#333</item>
+        <item name="android:textColor">#f3f3f3</item>
         <item name="android:textSize">22sp</item>
+        <item name="android:padding">8dp</item>
+
     </style>
 </resources>

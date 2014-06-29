@@ -1,11 +1,11 @@
 buildscript {
     ext.kotlin_version = '0.6.1910'
     repositories {
+        mavenLocal()
         mavenCentral()
         maven {
             url 'https://oss.sonatype.org/content/repositories/snapshots/'
         }
-//        mavenLocal()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.7.1'
@@ -17,6 +17,7 @@ apply plugin: 'android'
 apply plugin: 'kotlin-android'
 
 repositories {
+    mavenLocal()
     mavenCentral()
     maven {
         url 'https://oss.sonatype.org/content/repositories/snapshots/'

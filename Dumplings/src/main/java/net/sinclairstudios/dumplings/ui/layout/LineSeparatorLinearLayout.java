@@ -1,4 +1,4 @@
-package net.sinclairstudios.dumplings.layout;
+package net.sinclairstudios.dumplings.ui.layout;
 
 import android.content.Context;
 import android.util.AttributeSet;
