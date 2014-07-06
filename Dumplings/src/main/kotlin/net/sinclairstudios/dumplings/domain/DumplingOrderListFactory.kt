@@ -9,8 +9,14 @@ public class DumplingOrderListFactory {
     private val dumplingRatingOrganiser = DumplingRatingTransformer(DumplingCalculationEqualiser())
 
     public fun createFromDumplingRatings(dumplingRatings : List<DumplingRating>, numberOfServings: Int,
-                                         preferMultiplesOf: Int): ArrayList<DumplingServings> {
+                                         preferMultiplesOf: Int): List<DumplingServings> {
         return dumplingRatingOrganiser.organise(dumplingRatings, numberOfServings, preferMultiplesOf)
+    }
+
+    public fun filterEmptyDumplingOrders(dumplingServings : List<DumplingServings>) : List<DumplingServings> {
+        return dumplingServings.filter { item ->
+            item.servings > 0
+        }
     }
 
     public fun limitDumplingOrders(dumplingServings : List<DumplingServings>,

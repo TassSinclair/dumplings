@@ -2,6 +2,7 @@ package net.sinclairstudios.dumplings.ui.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,8 +19,8 @@ import com.googlecode.androidannotations.annotations.ViewById;
 import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.domain.DumplingServings;
 import net.sinclairstudios.dumplings.domain.DumplingServingsViewHook;
-import net.sinclairstudios.dumplings.ui.layout.LineSeparatorLinearLayout;
 import net.sinclairstudios.dumplings.ui.widgets.DumplingNameAutocompleteAdapterFactory;
+import net.sinclairstudios.dumplings.ui.widgets.DumplingOrderAdapter;
 import net.sinclairstudios.util.CountTracker;
 import net.sinclairstudios.util.TextViewUpdatingCountTrackerListener;
 
@@ -27,12 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @EActivity(R.layout.your_order_layout)
-public class YourOrderActivity extends Activity {
+public class YourOrderActivity extends ListActivity {
 
     private ArrayList<DumplingServings> dumplingServings;
 
-    @ViewById
-    protected LineSeparatorLinearLayout yourOrderRowHolder;
     @ViewById
     protected TextView servingCountdownTextView;
 
@@ -50,7 +49,6 @@ public class YourOrderActivity extends Activity {
 
     @AfterViews
     protected void initRows() {
-        DumplingNameAutocompleteAdapterFactory adapterFactory = new DumplingNameAutocompleteAdapterFactory(this);
         int totalDumplings = 0;
         for (DumplingServings dumplingOrder : dumplingServings) {
             totalDumplings += dumplingOrder.getServings();
@@ -60,23 +58,7 @@ public class YourOrderActivity extends Activity {
                 getString(R.string.servingCountdown)));
         masterCountTracker.add(0);
 
-        List<DumplingServingsViewHook> viewHooks = DumplingServingsViewHook.createFrom(dumplingServings);
-
-        for (DumplingServingsViewHook dumplingServingsViewHook : viewHooks) {
-            View repeatableDumplingRowLayout = getLayoutInflater().inflate(R.layout.your_order_row, null);
-            yourOrderRowHolder.addView(repeatableDumplingRowLayout);
-
-            TextView dumplingNameTextView = (TextView)
-                    repeatableDumplingRowLayout.findViewById(R.id.dumplingNameTextView);
-            ImageView dumplingImageView = (ImageView) repeatableDumplingRowLayout.findViewById(R.id.dumplingImage);
-
-            dumplingServingsViewHook.bind(dumplingNameTextView,
-                    (TableLayout) repeatableDumplingRowLayout.findViewById(R.id.dumplingCheckboxHolder),
-                    masterCountTracker, this);
-
-            adapterFactory.updateDumplingImageFromLabel(
-                    dumplingServingsViewHook.getDumplingServings().getDumpling().getName(), dumplingImageView);
-        }
+        getListView().setAdapter(new DumplingOrderAdapter(this, dumplingServings, masterCountTracker));
     }
 
     @Override

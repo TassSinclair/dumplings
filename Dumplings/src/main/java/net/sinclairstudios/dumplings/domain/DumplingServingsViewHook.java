@@ -18,15 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DumplingServingsViewHook {
-    private final DumplingServings dumplingServings;
 
-    public static List<DumplingServingsViewHook> createFrom(List<DumplingServings> dumplingServings) {
-        List<DumplingServingsViewHook> orderViewHookList = new ArrayList<DumplingServingsViewHook>();
-        for (DumplingServings dumplingOrder : dumplingServings) {
-            orderViewHookList.add(new DumplingServingsViewHook(dumplingOrder));
-        }
-        return orderViewHookList;
-    }
+    private final DumplingServings dumplingServings;
 
     public DumplingServingsViewHook(DumplingServings dumplingServings) {
         this.dumplingServings = dumplingServings;

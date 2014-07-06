@@ -1,42 +1,37 @@
 package net.sinclairstudios.dumplings.ui.activity;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
+import android.view.View;
+import android.widget.*;
 
-import android.widget.ImageView;
-import android.widget.SeekBar;
-import android.widget.TextView;
+import com.example.android.swipedismiss.SwipeDismissListViewTouchListener;
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.ViewById;
 
 import net.sinclairstudios.dumplings.R;
-import net.sinclairstudios.dumplings.domain.DumplingServings;
-import net.sinclairstudios.dumplings.domain.DumplingServingsViewHook;
-import net.sinclairstudios.dumplings.ui.layout.LineSeparatorLinearLayout;
-import net.sinclairstudios.dumplings.ui.widgets.DumplingNameAutocompleteAdapterFactory;
+import net.sinclairstudios.dumplings.domain.*;
+import net.sinclairstudios.dumplings.ui.widgets.DumplingRatingAdapter;
+import net.sinclairstudios.dumplings.ui.widgets.DumplingServingAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
-@EActivity(R.layout.specific_servings_layout)
-public class SpecificServingsActivity extends Activity {
+@EActivity(R.layout.list_layout)
+public class SpecificServingsActivity extends ListActivity {
 
     private ArrayList<DumplingServings> dumplingServings;
-
-    @ViewById
-    protected LineSeparatorLinearLayout specificServingsRowHolder;
+    private DumplingServingAdapter dumplingServingAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         dumplingServings =
                 (ArrayList<DumplingServings>)getIntent().getSerializableExtra(DumplingServings.class.getName());
+
+        dumplingServingAdapter = new DumplingServingAdapter(this, dumplingServings);
         initActionBar();
         super.onCreate(savedInstanceState);
     }
@@ -50,28 +45,40 @@ public class SpecificServingsActivity extends Activity {
     }
 
     @AfterViews
-    protected void hydrateRows() {
-        DumplingNameAutocompleteAdapterFactory adapterFactory = new DumplingNameAutocompleteAdapterFactory(this);
-        specificServingsRowHolder.removeAllViews();
+    protected void populateListView() {
 
-        List<DumplingServingsViewHook> viewHooks = DumplingServingsViewHook.createFrom(dumplingServings);
-        for (DumplingServingsViewHook viewHook : viewHooks) {
-            ViewGroup row = (ViewGroup) getLayoutInflater().inflate(R.layout.specific_servings_row, null);
-            AutoCompleteTextView dumplingNameEditText =
-                    (AutoCompleteTextView) row.findViewById(R.id.dumplingNameEditText);
-            dumplingNameEditText.setAdapter(adapterFactory.createAdapter());
-            dumplingNameEditText.addTextChangedListener(adapterFactory
-                    .createListener((ImageView) row.findViewById(R.id.dumplingImage)));
-            TextView dumplingNameTextView = (TextView) row.findViewById(R.id.dumplingServingCountTextView);
+        ListView listView = getListView();
+        View settingView = getLayoutInflater().inflate(R.layout.list_footer, null);
+        listView.addFooterView(settingView);
+        setListAdapter(dumplingServingAdapter);
+        final DumplingServingAdapter adapter = dumplingServingAdapter;
+        SwipeDismissListViewTouchListener touchListener =
+                new SwipeDismissListViewTouchListener(
+                        listView,
+                        new SwipeDismissListViewTouchListener.DismissCallbacks() {
+                            @Override
+                            public boolean canDismiss(int position) {
+                                return true;
+                            }
+                            @Override
+                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+                                    adapter.remove(adapter.getItem(position));
+                                }
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
 
-            dumplingNameEditText.setId(specificServingsRowHolder.findUnusedId());
-            SeekBar seekBar = (SeekBar) row.findViewById(R.id.dumplingServingSeekBar);
-            seekBar.setId(specificServingsRowHolder.findUnusedId());
-            viewHook.bind(dumplingNameEditText);
-            viewHook.bind(seekBar, dumplingNameTextView);
 
-            specificServingsRowHolder.addView(row);
-        }
+        listView.setOnTouchListener(touchListener);
+        // Setting this scroll listener is required to ensure that during ListView scrolling,
+        // we don't look for swipes.
+        listView.setOnScrollListener(touchListener.makeScrollListener());
+    }
+
+    public void addDumpling(View button) {
+        dumplingServings.add(new DumplingServings(new Dumpling(""), 0));
+        dumplingServingAdapter.notifyDataSetChanged();
     }
 
     @Override

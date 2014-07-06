@@ -13,6 +13,7 @@ import com.googlecode.androidannotations.annotations.EFragment;
 import com.googlecode.androidannotations.annotations.ViewById;
 import net.sinclairstudios.dumplings.DumplingsServingsDataController;
 import net.sinclairstudios.dumplings.R;
+import net.sinclairstudios.dumplings.domain.DumplingOrderListFactory;
 import net.sinclairstudios.dumplings.ui.activity.SpecificServingsActivity_;
 import net.sinclairstudios.dumplings.ui.activity.YourOrderActivity_;
 import net.sinclairstudios.dumplings.domain.DumplingServings;
@@ -20,11 +21,14 @@ import net.sinclairstudios.util.TextViewUpdater;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @EFragment(R.layout.specific_servings_main_layout)
 public class ServingsMainFragment extends Fragment {
 
     private final static int MODIFYING_SPECIFIC_SERVINGS = 2;
+
+    private final DumplingOrderListFactory orderListFactory = new DumplingOrderListFactory();
 
     @ViewById
     protected Button specificServingsButton;
@@ -74,8 +78,9 @@ public class ServingsMainFragment extends Fragment {
     @Click
     protected void calculateRatiosButton() {
         Intent intent = new Intent(getActivity(), YourOrderActivity_.class);
-        intent.putExtra(DumplingServings.class.getName(),
-                dumplingsServingsDataController.get());
+        ArrayList<DumplingServings> dumplingServings = new ArrayList<DumplingServings>(
+                orderListFactory.filterEmptyDumplingOrders(dumplingsServingsDataController.get()));
+        intent.putExtra(DumplingServings.class.getName(), dumplingServings);
         startActivity(intent);
     }
 

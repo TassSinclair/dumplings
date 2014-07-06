@@ -1,8 +1,10 @@
-package net.sinclairstudios.dumplings.ui.activity;
+package net.sinclairstudios.dumplings.ui.widgets;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.ui.fragment.RatiosMainFragment;
 import net.sinclairstudios.dumplings.ui.fragment.RatiosMainFragment_;
 import net.sinclairstudios.dumplings.ui.fragment.ServingsMainFragment;
@@ -11,13 +13,15 @@ import net.sinclairstudios.dumplings.ui.fragment.ServingsMainFragment_;
 
 public class MainActivityPagerAdapter extends FragmentStatePagerAdapter {
 
-    private final NamedFragment[] fragments = {
-            new NamedFragment("Ratios", new RatiosMainFragment_()),
-            new NamedFragment("Specific servings", new ServingsMainFragment_())
-    };
+    private final NamedFragment[] fragments;
 
-    public MainActivityPagerAdapter(FragmentManager fragmentManager) {
+    public MainActivityPagerAdapter(FragmentManager fragmentManager, Context context) {
         super(fragmentManager);
+
+        fragments = new NamedFragment[]{
+                new NamedFragment(context.getString(R.string.ratingsAndRatiosLabel), new RatiosMainFragment_()),
+                new NamedFragment(context.getString(R.string.specificServingsLabel), new ServingsMainFragment_())
+        };
     }
 
 

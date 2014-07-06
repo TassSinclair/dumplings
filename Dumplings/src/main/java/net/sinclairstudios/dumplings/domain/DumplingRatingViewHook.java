@@ -10,15 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DumplingRatingViewHook implements TextWatcher, RatingBar.OnRatingBarChangeListener {
-    private final DumplingRating dumplingRating;
 
-    public static List<DumplingRatingViewHook> createFrom(List<DumplingRating> dumplingRatings) {
-        List<DumplingRatingViewHook> ratingViewHookList = new ArrayList<DumplingRatingViewHook>();
-        for (DumplingRating dumplingRating : dumplingRatings) {
-            ratingViewHookList.add(new DumplingRatingViewHook(dumplingRating));
-        }
-        return ratingViewHookList;
-    }
+    private final DumplingRating dumplingRating;
 
     public DumplingRatingViewHook(DumplingRating dumplingRating) {
         this.dumplingRating = dumplingRating;

@@ -1,41 +1,37 @@
 package net.sinclairstudios.dumplings.ui.activity;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.AutoCompleteTextView;
-import android.widget.ImageView;
-import android.widget.RatingBar;
+import android.view.View;
+import android.widget.*;
 
+import com.example.android.swipedismiss.SwipeDismissListViewTouchListener;
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.ViewById;
 
 import net.sinclairstudios.dumplings.R;
+import net.sinclairstudios.dumplings.domain.Dumpling;
 import net.sinclairstudios.dumplings.domain.DumplingRating;
-import net.sinclairstudios.dumplings.domain.DumplingRatingViewHook;
-import net.sinclairstudios.dumplings.ui.layout.LineSeparatorLinearLayout;
-import net.sinclairstudios.dumplings.ui.widgets.DumplingNameAutocompleteAdapterFactory;
+import net.sinclairstudios.dumplings.domain.Rating;
+import net.sinclairstudios.dumplings.ui.widgets.DumplingRatingAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
 
-@EActivity(R.layout.ratings_layout)
-public class RatingsActivity extends Activity {
+@EActivity(R.layout.list_layout)
+public class RatingsActivity extends ListActivity {
 
-    private ArrayList<DumplingRating> dumplingRatingList;
-
-    @ViewById
-    protected LineSeparatorLinearLayout choicesAndRatiosRowHolder;
+    private ArrayList<DumplingRating> dumplingRatings;
+    private DumplingRatingAdapter dumplingRatingAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        dumplingRatingList =
+        dumplingRatings =
                 (ArrayList<DumplingRating>)getIntent().getSerializableExtra(DumplingRating.class.getName());
+        dumplingRatingAdapter = new DumplingRatingAdapter(this, dumplingRatings);
         initActionBar();
         super.onCreate(savedInstanceState);
     }
@@ -49,25 +45,45 @@ public class RatingsActivity extends Activity {
     }
 
     @AfterViews
-    protected void hydrateRows() {
-        DumplingNameAutocompleteAdapterFactory adapterFactory = new DumplingNameAutocompleteAdapterFactory(this);
-        choicesAndRatiosRowHolder.removeAllViews();
+    protected void populateListView() {
 
-        List<DumplingRatingViewHook> viewHooks = DumplingRatingViewHook.createFrom(dumplingRatingList);
-        for (DumplingRatingViewHook dumplingRatingViewHook : viewHooks) {
-            ViewGroup row = (ViewGroup) getLayoutInflater().inflate(R.layout.ratings_row, null);
-            AutoCompleteTextView dumplingNameEditText =
-                    (AutoCompleteTextView) row.findViewById(R.id.dumplingNameEditText);
-            dumplingNameEditText.setAdapter(adapterFactory.createAdapter());
-            dumplingNameEditText.addTextChangedListener(adapterFactory
-                    .createListener((ImageView) row.findViewById(R.id.dumplingImage)));
-            dumplingNameEditText.setId(choicesAndRatiosRowHolder.findUnusedId());
-            RatingBar dumplingRatingBar = (RatingBar) row.findViewById(R.id.dumplingRatioRatingBar);
-            dumplingRatingBar.setId(choicesAndRatiosRowHolder.findUnusedId());
-            dumplingRatingViewHook.bind(dumplingNameEditText, dumplingRatingBar);
+        ListView listView = getListView();
+        View settingView = getLayoutInflater().inflate(R.layout.list_footer, null);
+        listView.addFooterView(settingView);
+        setListAdapter(dumplingRatingAdapter);
 
-            choicesAndRatiosRowHolder.addView(row);
-        }
+        final DumplingRatingAdapter adapter = dumplingRatingAdapter;
+
+        SwipeDismissListViewTouchListener touchListener =
+                new SwipeDismissListViewTouchListener(
+                        listView,
+                        new SwipeDismissListViewTouchListener.DismissCallbacks() {
+                            @Override
+                            public boolean canDismiss(int position) {
+                                return true;
+                            }
+
+                            @Override
+                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                                for (int position : reverseSortedPositions) {
+                                    adapter.remove(adapter.getItem(position));
+                                }
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+
+
+        listView.setOnTouchListener(touchListener);
+        // Setting this scroll listener is required to ensure that during ListView scrolling,
+        // we don't look for swipes.
+        listView.setOnScrollListener(touchListener.makeScrollListener());
+
+
+    }
+
+    public void addDumpling(View button) {
+        dumplingRatings.add(new DumplingRating(new Dumpling(""), new Rating(0)));
+        dumplingRatingAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -84,7 +100,7 @@ public class RatingsActivity extends Activity {
     public void finish() {
         Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra(DumplingRating.class.getName(), dumplingRatingList);
+        intent.putExtra(DumplingRating.class.getName(), dumplingRatings);
         setResult(RESULT_OK, intent);
         super.finish();
     }

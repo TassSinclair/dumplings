@@ -65,8 +65,9 @@ public class RatiosMainFragment extends Fragment {
     protected void calculateRatiosButton() {
         Intent intent = new Intent(getActivity(), YourOrderActivity_.class);
         int requiredServings = howManyPeopleSeekBar.getProgress() + 1;
-        ArrayList<DumplingServings> dumplingServings = orderListFactory.createFromDumplingRatings(
-                dumplingsRatingsDataController.get(), requiredServings, preferMultiplesOf());
+        ArrayList<DumplingServings> dumplingServings = new ArrayList<DumplingServings>(
+                orderListFactory.createFromDumplingRatings(dumplingsRatingsDataController.get(),
+                requiredServings, preferMultiplesOf()));
         intent.putExtra(DumplingServings.class.getName(), dumplingServings);
         startActivity(intent);
     }

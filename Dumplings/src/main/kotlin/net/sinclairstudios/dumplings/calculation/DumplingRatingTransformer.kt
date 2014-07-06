@@ -12,7 +12,7 @@ import java.util.Collections
 public class DumplingRatingTransformer(private val equaliser : DumplingCalculationEqualiser) {
 
     public fun organise(dumplingRatings : List<DumplingRating>, howManyPeople : Int,
-                        preferMultiplesOf : Int) : ArrayList<DumplingServings> {
+                        preferMultiplesOf : Int) : List<DumplingServings> {
         val servingMultiplier = Fraction(1, preferMultiplesOf)
 
         val calculations = transformRatingsToCalculations(dumplingRatings, howManyPeople, servingMultiplier)
@@ -34,10 +34,10 @@ public class DumplingRatingTransformer(private val equaliser : DumplingCalculati
     }
 
     private fun transformCalculationsToOrders(calculations : List<DumplingServingCalculation>,
-                                              servingMultiplier : Fraction) : ArrayList<DumplingServings> {
-        return ArrayList(calculations.map({
+                                              servingMultiplier : Fraction) : List<DumplingServings> {
+        return calculations.map({
             calculation -> DumplingServings(calculation.dumpling,
                                    (calculation.servings / servingMultiplier).getAsInt())
-        }))
+        })
     }
 }

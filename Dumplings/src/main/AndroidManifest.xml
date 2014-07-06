@@ -34,11 +34,13 @@
         <activity
                 android:name=".ui.activity.RatingsActivity_"
                 android:label="@string/ratingsAndRatiosButton"
+                android:windowSoftInputMode="adjustResize"
                 android:parentActivityName=".ui.activity.MainActivity_">
         </activity>
         <activity
                 android:name=".ui.activity.SpecificServingsActivity_"
                 android:label="@string/specificServingsButton"
+                android:windowSoftInputMode="adjustResize"
                 android:parentActivityName=".ui.activity.MainActivity_">
         </activity>
     </application>
