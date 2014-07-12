@@ -13,6 +13,7 @@ import com.googlecode.androidannotations.annotations.EFragment;
 import com.googlecode.androidannotations.annotations.ViewById;
 import net.sinclairstudios.dumplings.DumplingsServingsDataController;
 import net.sinclairstudios.dumplings.R;
+import net.sinclairstudios.dumplings.calculation.DumplingServingAccumulator;
 import net.sinclairstudios.dumplings.domain.DumplingOrderListFactory;
 import net.sinclairstudios.dumplings.ui.activity.SpecificServingsActivity_;
 import net.sinclairstudios.dumplings.ui.activity.YourOrderActivity_;
@@ -78,9 +79,11 @@ public class ServingsMainFragment extends Fragment {
     @Click
     protected void calculateRatiosButton() {
         Intent intent = new Intent(getActivity(), YourOrderActivity_.class);
-        ArrayList<DumplingServings> dumplingServings = new ArrayList<DumplingServings>(
-                orderListFactory.filterEmptyDumplingOrders(dumplingsServingsDataController.get()));
-        intent.putExtra(DumplingServings.class.getName(), dumplingServings);
+
+        DumplingServingAccumulator accumulator = new DumplingServingAccumulator();
+        accumulator.add(dumplingsServingsDataController.get());
+
+        intent.putExtra(DumplingServings.class.getName(), accumulator.getAll());
         startActivity(intent);
     }
 

@@ -26,14 +26,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
-            <AutoCompleteTextView
+            <net.sinclairstudios.dumplings.ui.widgets.ListenerTrackingEditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:editable="false"
                     android:clickable="false"
                     android:capitalize="words"
                     android:hint="@string/dumplingTypeHint"
-                    android:completionThreshold="4"
+                    android:completionThreshold="1"
                     android:singleLine="true"
                     android:textSize="22sp"
                     android:id="@+id/dumplingNameEditText"

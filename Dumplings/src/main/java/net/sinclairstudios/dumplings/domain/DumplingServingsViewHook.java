@@ -84,7 +84,7 @@ public class DumplingServingsViewHook {
             @Override
             public void afterTextChanged(Editable editable) {
                 dumplingServings.setDumpling(new Dumpling(editable.toString()));
-                Log.d(DumplingRatingViewHook.class.getName(), "Change name event received: " + dumplingServings);
+                Log.d(DumplingServingsViewHook.class.getName(), "Change name event received: " + dumplingServings);
             }
         };
     }
@@ -109,13 +109,10 @@ public class DumplingServingsViewHook {
     }
 
     public void bind(SeekBar seekBar, TextView textView) {
+        seekBar.setOnSeekBarChangeListener(null);
         seekBar.setProgress(dumplingServings.getServings());
         SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = createOnSeekBarChangeListener(textView);
         seekBar.setOnSeekBarChangeListener(onSeekBarChangeListener);
         onSeekBarChangeListener.onProgressChanged(seekBar, seekBar.getProgress(), false);
-    }
-
-    public DumplingServings getDumplingServings() {
-        return dumplingServings;
     }
 }

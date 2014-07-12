@@ -10,6 +10,7 @@ import android.widget.*;
 import com.googlecode.androidannotations.annotations.*;
 import net.sinclairstudios.dumplings.DumplingsRatingsDataController;
 import net.sinclairstudios.dumplings.R;
+import net.sinclairstudios.dumplings.calculation.DumplingServingAccumulator;
 import net.sinclairstudios.dumplings.ui.activity.RatingsActivity_;
 import net.sinclairstudios.dumplings.ui.activity.YourOrderActivity_;
 import net.sinclairstudios.dumplings.domain.DumplingOrderListFactory;
@@ -19,6 +20,7 @@ import net.sinclairstudios.util.TextViewUpdater;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @EFragment(R.layout.ratios_main_layout)
 public class RatiosMainFragment extends Fragment {
@@ -65,10 +67,12 @@ public class RatiosMainFragment extends Fragment {
     protected void calculateRatiosButton() {
         Intent intent = new Intent(getActivity(), YourOrderActivity_.class);
         int requiredServings = howManyPeopleSeekBar.getProgress() + 1;
-        ArrayList<DumplingServings> dumplingServings = new ArrayList<DumplingServings>(
-                orderListFactory.createFromDumplingRatings(dumplingsRatingsDataController.get(),
-                requiredServings, preferMultiplesOf()));
-        intent.putExtra(DumplingServings.class.getName(), dumplingServings);
+
+        DumplingServingAccumulator accumulator = new DumplingServingAccumulator();
+        accumulator.add(orderListFactory.createFromDumplingRatings(
+                dumplingsRatingsDataController.get(), requiredServings, preferMultiplesOf()));
+
+        intent.putExtra(DumplingServings.class.getName(), accumulator.getAll());
         startActivity(intent);
     }
 

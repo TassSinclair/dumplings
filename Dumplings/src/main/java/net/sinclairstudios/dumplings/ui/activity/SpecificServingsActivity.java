@@ -5,6 +5,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
@@ -58,7 +59,7 @@ public class SpecificServingsActivity extends ListActivity {
                         new SwipeDismissListViewTouchListener.DismissCallbacks() {
                             @Override
                             public boolean canDismiss(int position) {
-                                return true;
+                                return position < adapter.getCount();
                             }
                             @Override
                             public void onDismiss(ListView listView, int[] reverseSortedPositions) {

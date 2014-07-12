@@ -13,12 +13,7 @@ public class DumplingOrderListFactory {
         return dumplingRatingOrganiser.organise(dumplingRatings, numberOfServings, preferMultiplesOf)
     }
 
-    public fun filterEmptyDumplingOrders(dumplingServings : List<DumplingServings>) : List<DumplingServings> {
-        return dumplingServings.filter { item ->
-            item.servings > 0
-        }
-    }
-
+    // Unused...
     public fun limitDumplingOrders(dumplingServings : List<DumplingServings>,
                                    numberOfServings: Int) : List<DumplingServings> {
         var numberOfServingsRemaining = numberOfServings
@@ -26,8 +21,6 @@ public class DumplingOrderListFactory {
             val limitedServings = Math.min(numberOfServingsRemaining, item.servings)
             numberOfServingsRemaining -= item.servings
             DumplingServings(item.dumpling, limitedServings)
-        }).filter { item ->
-            item.servings > 0
-        }
+        })
     }
 }

@@ -26,7 +26,7 @@
             android:layout_weight="1"
             >
 
-        <AutoCompleteTextView
+        <net.sinclairstudios.dumplings.ui.widgets.ListenerTrackingEditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:editable="false"

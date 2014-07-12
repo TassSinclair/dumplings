@@ -30,6 +30,8 @@ public class DumplingOrderAdapter extends ArrayAdapter<DumplingServings> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        DumplingServings dumplingServings = getItem(position);
+
         View row = convertView;
 
 //        if (convertView == null) {
@@ -41,10 +43,10 @@ public class DumplingOrderAdapter extends ArrayAdapter<DumplingServings> {
         TextView dumplingNameTextView = (TextView) row.findViewById(R.id.dumplingNameTextView);
         ImageView dumplingImageView = (ImageView) row.findViewById(R.id.dumplingImage);
 
-        DumplingServingsViewHook viewHook = new DumplingServingsViewHook(getItem(position));
+        DumplingServingsViewHook viewHook = new DumplingServingsViewHook(dumplingServings);
 
         autocompleteAdapterFactory.updateDumplingImageFromLabel(
-                viewHook.getDumplingServings().getDumpling().getName(), dumplingImageView);
+                dumplingServings.getDumpling().getName(), dumplingImageView);
         viewHook.bind(dumplingNameTextView,
                 (TableLayout) row.findViewById(R.id.dumplingCheckboxHolder),
                 masterCountTracker, getContext());

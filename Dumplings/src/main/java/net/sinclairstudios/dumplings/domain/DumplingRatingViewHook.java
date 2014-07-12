@@ -18,8 +18,9 @@ public class DumplingRatingViewHook implements TextWatcher, RatingBar.OnRatingBa
     }
 
     public void bind(EditText nameEditText, RatingBar ratingRatingBar) {
-        nameEditText.setText(dumplingRating.getDumpling().getName());
         nameEditText.addTextChangedListener(this);
+        nameEditText.setText(dumplingRating.getDumpling().getName());
+        ratingRatingBar.setOnRatingBarChangeListener(null);
         ratingRatingBar.setProgress(dumplingRating.getRating().getValue());
         ratingRatingBar.setOnRatingBarChangeListener(this);
     }

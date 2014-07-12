@@ -13,13 +13,13 @@ public class DumplingServingAccumulator {
     }
 
     fun filterAndUpdateExisting(dumplingServings : DumplingServings) {
-        val equivalent = all.find({ existing ->
+        val equivalent = all.firstOrNull({ existing ->
             existing.dumpling == dumplingServings.dumpling
         })
 
         if (equivalent != null) {
             equivalent.servings = equivalent.servings + dumplingServings.servings
-        } else {
+        } else if (dumplingServings.servings > 0) {
             $all.add(dumplingServings)
         }
     }

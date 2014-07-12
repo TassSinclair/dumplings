@@ -37,11 +37,11 @@ public open class Fraction(val numerator: Int, val denominator: Int) : Comparabl
         return getRemainderAsInt() != 0
     }
 
-    public fun toString(): String {
+    override fun toString(): String {
         return "$numerator/$denominator"
     }
 
-    public fun equals(that: Any?): Boolean {
+    override fun equals(that: Any?): Boolean {
         return that is Fraction
             && equals(that)
     }
