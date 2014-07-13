@@ -10,12 +10,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="60.000191"
+   width="62.000191"
    height="52.001732"
    id="svg7189"
    sodipodi:version="0.32"
-   inkscape:version="0.48.2 r9819"
-   sodipodi:docname="full-star.svg"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="star_full.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    version="1.1"
    inkscape:export-filename="/Users/tass/Projects/Dumplings/workspace/full-star.png"
@@ -123,20 +123,20 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="4.9497475"
-     inkscape:cx="32.44304"
-     inkscape:cy="21.037107"
+     inkscape:cx="33.44304"
+     inkscape:cy="21.037103"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
      inkscape:window-width="1440"
      inkscape:window-height="856"
-     inkscape:window-x="298"
-     inkscape:window-y="73"
+     inkscape:window-x="773"
+     inkscape:window-y="216"
      inkscape:window-maximized="0"
-     fit-margin-left="6"
+     fit-margin-left="7"
      fit-margin-top="3"
-     fit-margin-right="6"
+     fit-margin-right="7"
      fit-margin-bottom="3" />
   <metadata
      id="metadata7194">
@@ -146,7 +146,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -154,7 +154,7 @@
      id="layer1"
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     transform="translate(5.9989966,3.0000086)">
+     transform="translate(6.9989966,3.0000086)">
     <path
        sodipodi:type="star"
        style="fill:url(#radialGradient2766);fill-opacity:1;stroke:url(#linearGradient7955);stroke-width:1.95307207;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"

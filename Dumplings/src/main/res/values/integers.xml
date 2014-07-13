@@ -5,6 +5,7 @@
         <item>1</item>
         <item>1</item>
         <item>1</item>
+        <item>0</item>
     </integer-array>
     <integer-array name="defaultDumplingServings">
         <item>3</item>
@@ -12,6 +13,7 @@
         <item>2</item>
         <item>0</item>
         <item>0</item>
+        <item>1</item>
     </integer-array>
     <integer name="maxServings">15</integer>
     <integer name="maxSpecificServings">6</integer>
