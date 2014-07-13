@@ -6,5 +6,6 @@
         <item>@drawable/prawn_dumpling</item>
         <item>@drawable/pork_dumpling</item>
         <item>@drawable/beef_dumpling</item>
+        <item>@drawable/vegetable_dumpling</item>
     </array>
 </resources>

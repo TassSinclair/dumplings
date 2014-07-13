@@ -14,7 +14,7 @@
    height="766"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.2 r9819"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="dumpling_here.svg"
    inkscape:export-filename="/Users/tass/Projects/Dumplings/workspace/dumpling_here.png"
    inkscape:export-xdpi="9.8699999"
@@ -322,16 +322,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="-233.92698"
-     inkscape:cy="345.85295"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="35.269544"
+     inkscape:cy="281.07025"
      inkscape:document-units="px"
-     inkscape:current-layer="flowRoot3058"
+     inkscape:current-layer="g3054"
      showgrid="false"
-     inkscape:window-width="1440"
+     inkscape:window-width="1771"
      inkscape:window-height="814"
-     inkscape:window-x="21"
-     inkscape:window-y="23"
+     inkscape:window-x="60"
+     inkscape:window-y="25"
      inkscape:window-maximized="0"
      fit-margin-top="150"
      fit-margin-left="20"
@@ -414,27 +414,5 @@
          style="font-size:600px;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;stroke:#2b8332;font-family:Droid Sans;-inkscape-font-specification:Droid Sans"
          id="path3085" />
     </g>
-    <flowRoot
-       transform="translate(-457.75695,294.87831)"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       id="flowRoot3068"
-       xml:space="preserve"><flowRegion
-         id="flowRegion3070"><rect
-           y="143.4435"
-           x="-168.57143"
-           height="622.85712"
-           width="667.14288"
-           id="rect3072" /></flowRegion><flowPara
-         id="flowPara3074" /></flowRoot>    <flowRoot
-       transform="translate(-457.75695,294.87831)"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       id="flowRoot3076"
-       xml:space="preserve"><flowRegion
-         id="flowRegion3078"><rect
-           y="102.01493"
-           x="-155.71428"
-           height="627.14288"
-           width="572.85712"
-           id="rect3080" /></flowRegion><flowPara
-         id="flowPara3082" /></flowRoot>  </g>
+  </g>
 </svg>

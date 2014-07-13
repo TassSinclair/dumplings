@@ -10,7 +10,7 @@
     <application
             android:supportsRtl="true"
             android:allowBackup="true"
-            android:icon="@drawable/main_icon"
+            android:icon="@drawable/simple_dumpling"
             android:label="@string/applicationName"
             android:theme="@style/AppTheme">
         <activity

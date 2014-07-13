@@ -50,7 +50,7 @@ public class DumplingNameAutocompleteAdapterFactory {
             imageView.setImageDrawable(defaultDumplingIcons.getDrawable(index));
         }
         else {
-            imageView.setImageResource(R.drawable.dumpling);
+            imageView.setImageResource(R.drawable.simple_dumpling);
         }
     }
 }

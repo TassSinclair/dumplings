@@ -57,5 +57,6 @@
         <item>Boiled Chicken &amp; Prawn</item><!-- Boiled Chicken & Prawn -->
         <item>Fried Pork</item><!-- Fried pork -->
         <item>Boiled Beef</item><!-- Boiled beef -->
+        <item>Boiled Vegetables</item><!-- Boiled vegetables -->
     </string-array>
 </resources>
