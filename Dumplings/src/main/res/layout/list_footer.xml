@@ -11,11 +11,11 @@
               android:paddingBottom="8dp"
         >
 
-    <Button
+    <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/addDumplingButton"
             android:onClick="addDumpling"
             android:textSize="18sp"
+            android:src="@drawable/add_dumpling"
             />
 </LinearLayout>

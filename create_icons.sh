@@ -41,7 +41,7 @@ do
   done
 
   # UI cues
-  for icon in ratings_and_ratios servings
+  for icon in add_dumpling ratings_and_ratios servings
   do 
     convert -background none ${icon}.svg -resize ${iconSize}x${iconSize} tmp/${icon}_${resName}.png
     cp tmp/${icon}_${resName}.png ${outputDir}/${icon}.png
