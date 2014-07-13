@@ -25,26 +25,6 @@ public class DumplingServingsViewHook {
         this.dumplingServings = dumplingServings;
     }
 
-    public void bind(TextView nameTextView, TableLayout checkboxTableLayout, CountTracker masterCountTracker,
-                     Context context) {
-        CountTracker thisCountTracker = new CountTracker(dumplingServings.getServings());
-        thisCountTracker.addOnAddListener(new TextViewUpdatingCountTrackerListener(nameTextView,
-                "{} " + dumplingServings.getDumpling().getName()));
-        thisCountTracker.add(0);
-        CompoundButton.OnCheckedChangeListener onCheckedChangeListener =
-                createListener(masterCountTracker, thisCountTracker);
-
-        ViewGroup row = null;
-        for (int i = 0; i < dumplingServings.getServings(); ++i) {
-            if (i % 5 == 0) {
-                row = (TableRow) LayoutInflater.from(context).inflate(R.layout.your_order_servings_row, null);
-                checkboxTableLayout.addView(row);
-            }
-            CheckBox checkbox = createCheckbox(context, onCheckedChangeListener);
-            row.addView(checkbox);
-        }
-    }
-
     private CompoundButton.OnCheckedChangeListener createListener(final CountTracker masterCountTracker,
                                                                   final CountTracker thisCountTracker) {
         return new CompoundButton.OnCheckedChangeListener() {

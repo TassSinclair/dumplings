@@ -6,22 +6,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import net.sinclairstudios.dumplings.R;
-import net.sinclairstudios.dumplings.domain.DumplingServings;
+import net.sinclairstudios.dumplings.domain.DumplingOrder;
+import net.sinclairstudios.dumplings.domain.DumplingOrderViewHook;
 import net.sinclairstudios.dumplings.domain.DumplingServingsViewHook;
 import net.sinclairstudios.util.CountTracker;
-import net.sinclairstudios.util.TextViewUpdatingCountTrackerListener;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class DumplingOrderAdapter extends ArrayAdapter<DumplingServings> {
+public class DumplingOrderAdapter extends ArrayAdapter<DumplingOrder> {
 
     private final DumplingNameAutocompleteAdapterFactory autocompleteAdapterFactory;
     private final CountTracker masterCountTracker;
 
-    public DumplingOrderAdapter(Context context, List<DumplingServings> dumplingServings,
+    public DumplingOrderAdapter(Context context, List<DumplingOrder> dumplingOrders,
                                 CountTracker masterCountTracker) {
-        super(context, 0, dumplingServings);
+        super(context, 0, dumplingOrders);
         this.masterCountTracker = masterCountTracker;
         autocompleteAdapterFactory = new DumplingNameAutocompleteAdapterFactory(context);
     }
@@ -30,7 +30,7 @@ public class DumplingOrderAdapter extends ArrayAdapter<DumplingServings> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        DumplingServings dumplingServings = getItem(position);
+        DumplingOrder dumplingOrder = getItem(position);
 
         View row = convertView;
 
@@ -43,10 +43,10 @@ public class DumplingOrderAdapter extends ArrayAdapter<DumplingServings> {
         TextView dumplingNameTextView = (TextView) row.findViewById(R.id.dumplingNameTextView);
         ImageView dumplingImageView = (ImageView) row.findViewById(R.id.dumplingImage);
 
-        DumplingServingsViewHook viewHook = new DumplingServingsViewHook(dumplingServings);
+        DumplingOrderViewHook viewHook = new DumplingOrderViewHook(dumplingOrder);
 
         autocompleteAdapterFactory.updateDumplingImageFromLabel(
-                dumplingServings.getDumpling().getName(), dumplingImageView);
+                dumplingOrder.getServings().getDumpling().getName(), dumplingImageView);
         viewHook.bind(dumplingNameTextView,
                 (TableLayout) row.findViewById(R.id.dumplingCheckboxHolder),
                 masterCountTracker, getContext());

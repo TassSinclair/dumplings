@@ -11,6 +11,7 @@ import com.googlecode.androidannotations.annotations.*;
 import net.sinclairstudios.dumplings.DumplingsRatingsDataController;
 import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.calculation.DumplingServingAccumulator;
+import net.sinclairstudios.dumplings.domain.DumplingOrder;
 import net.sinclairstudios.dumplings.ui.activity.RatingsActivity_;
 import net.sinclairstudios.dumplings.ui.activity.YourOrderActivity_;
 import net.sinclairstudios.dumplings.domain.DumplingOrderListFactory;
@@ -72,7 +73,7 @@ public class RatiosMainFragment extends Fragment {
         accumulator.add(orderListFactory.createFromDumplingRatings(
                 dumplingsRatingsDataController.get(), requiredServings, preferMultiplesOf()));
 
-        intent.putExtra(DumplingServings.class.getName(), accumulator.getAll());
+        intent.putExtra(DumplingOrder.class.getName(), accumulator.getAll());
         startActivity(intent);
     }
 
