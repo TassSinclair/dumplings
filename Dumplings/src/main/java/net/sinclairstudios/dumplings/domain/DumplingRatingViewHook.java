@@ -5,6 +5,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class DumplingRatingViewHook implements TextWatcher, RatingBar.OnRatingBa
     public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) { }
 
     @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) { }
+    public void onTextChanged(@NotNull CharSequence charSequence, int i, int i2, int i3) { }
 
     @Override
     public void afterTextChanged(Editable editable) {

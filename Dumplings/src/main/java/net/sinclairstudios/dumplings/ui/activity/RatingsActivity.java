@@ -17,6 +17,7 @@ import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.domain.Dumpling;
 import net.sinclairstudios.dumplings.domain.DumplingRating;
 import net.sinclairstudios.dumplings.domain.Rating;
+import net.sinclairstudios.dumplings.ui.widgets.DismissArrayAdapterItemListViewTouchListener;
 import net.sinclairstudios.dumplings.ui.widgets.DumplingRatingAdapter;
 
 import java.util.ArrayList;
@@ -52,26 +53,8 @@ public class RatingsActivity extends ListActivity {
         listView.addFooterView(settingView);
         setListAdapter(dumplingRatingAdapter);
 
-        final DumplingRatingAdapter adapter = dumplingRatingAdapter;
-
-        SwipeDismissListViewTouchListener touchListener =
-                new SwipeDismissListViewTouchListener(
-                        listView,
-                        new SwipeDismissListViewTouchListener.DismissCallbacks() {
-                            @Override
-                            public boolean canDismiss(int position) {
-                                return true;
-                            }
-
-                            @Override
-                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
-                                for (int position : reverseSortedPositions) {
-                                    adapter.remove(adapter.getItem(position));
-                                }
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
-
+        DismissArrayAdapterItemListViewTouchListener touchListener
+                = new DismissArrayAdapterItemListViewTouchListener(listView, dumplingRatingAdapter);
 
         listView.setOnTouchListener(touchListener);
         // Setting this scroll listener is required to ensure that during ListView scrolling,

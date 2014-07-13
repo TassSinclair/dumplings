@@ -58,8 +58,6 @@ public class DumplingServingsViewHook {
         };
     }
 
-
-
     private CheckBox createCheckbox(Context context, CompoundButton.OnCheckedChangeListener onCheckedChangeListener) {
         CheckBox checkBox = new CheckBox(context);
         checkBox.setButtonDrawable(R.drawable.dumpling_checkbox);

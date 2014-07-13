@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="applicationName">Dumplings!</string>
+    <string name="applicationName">Dumplings !</string>
     <string name="howManyServings">Nombre de portions: {}</string>
-    <string name="specificServingsLabel">Choose servings</string>
+    <string name="specificServingsLabel">Portions spécifiques</string>
     <string name="ratingsAndRatiosLabel">Choix et ratios</string>
-    <string name="specificServingsButton">Choose servings</string>
+    <string name="specificServingsButton">Choisir les portions</string>
     <string name="ratingsAndRatiosButton">Choix et ratios</string>
     <string name="yourOrderName">Votre Commande</string>
     <string name="aboutName">A propos</string>
-    <string name="calculateRatiosButton">Ramène les dumplings!</string>
-    <string name="dumplingTypeHint">Nom du Dumpling?</string>
+    <string name="calculateRatiosButton">Ramène les dumplings !</string>
+    <string name="dumplingTypeHint">Nom du Dumpling ?</string>
     <string name="servingCountdown">En attente de {} portions</string>
     <string name="wasMadeBy">conçu par</string>
     <string name="madeThis"/>
-    <string name="preferEvenServings">Prefer multiples of 2:</string>
-    <string name="howManyWillBePickedFromSpecificServings">{} will be picked from specific servings</string>
-    <string name="howManyWillBePickedFromRatings">{} will be picked from ratings</string>
+    <string name="preferEvenServings">Préferer les multiples de 2:</string>
+    <string name="howManyWillBePickedFromSpecificServings">{} seront sélectionnées parmi les portions spécifiques</string>
+    <string name="howManyWillBePickedFromRatings">{} seront sélectionnées parmi les ratios</string>
     <string-array name="defaultDumplingNames">
         <item>Porc Bouilli</item>
         <item>Boeuf Frit</item>

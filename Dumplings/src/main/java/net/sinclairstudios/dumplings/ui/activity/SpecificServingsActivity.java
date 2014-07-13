@@ -16,6 +16,7 @@ import com.googlecode.androidannotations.annotations.EActivity;
 
 import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.domain.*;
+import net.sinclairstudios.dumplings.ui.widgets.DismissArrayAdapterItemListViewTouchListener;
 import net.sinclairstudios.dumplings.ui.widgets.DumplingRatingAdapter;
 import net.sinclairstudios.dumplings.ui.widgets.DumplingServingAdapter;
 
@@ -52,24 +53,9 @@ public class SpecificServingsActivity extends ListActivity {
         View settingView = getLayoutInflater().inflate(R.layout.list_footer, null);
         listView.addFooterView(settingView);
         setListAdapter(dumplingServingAdapter);
-        final DumplingServingAdapter adapter = dumplingServingAdapter;
-        SwipeDismissListViewTouchListener touchListener =
-                new SwipeDismissListViewTouchListener(
-                        listView,
-                        new SwipeDismissListViewTouchListener.DismissCallbacks() {
-                            @Override
-                            public boolean canDismiss(int position) {
-                                return position < adapter.getCount();
-                            }
-                            @Override
-                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
-                                for (int position : reverseSortedPositions) {
-                                    adapter.remove(adapter.getItem(position));
-                                }
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
 
+        DismissArrayAdapterItemListViewTouchListener touchListener
+                = new DismissArrayAdapterItemListViewTouchListener(listView, dumplingServingAdapter);
 
         listView.setOnTouchListener(touchListener);
         // Setting this scroll listener is required to ensure that during ListView scrolling,

@@ -2,9 +2,9 @@
 <resources>
     <string name="applicationName">دامپلینگ!</string>
     <string name="howManyServings">تعداد پرس : {}</string>
-    <string name="specificServingsLabel">Choose servings</string>
+    <string name="specificServingsLabel">سفارش ویژه</string>
     <string name="ratingsAndRatiosLabel">انواع و نسبت‌ها</string>
-    <string name="specificServingsButton">Choose servings</string>
+    <string name="specificServingsButton">انتخاب</string>
     <string name="ratingsAndRatiosButton">انواع و نسبت‌ها</string>
     <string name="yourOrderName">سفارش</string>
     <string name="aboutName">درباره</string>
@@ -13,9 +13,9 @@
     <string name="servingCountdown">منتظر {} پرس باش</string>
     <string name="wasMadeBy">ساخته شده در</string>
     <string name="madeThis"/>
-    <string name="preferEvenServings">Prefer multiples of 2:</string>
-    <string name="howManyWillBePickedFromSpecificServings">{} will be picked from specific servings</string>
-    <string name="howManyWillBePickedFromRatings">{} will be picked from ratings</string>
+    <string name="preferEvenServings">زوج باشه بهتره</string>
+    <string name="howManyWillBePickedFromSpecificServings">{} از سفارش خاص</string>
+    <string name="howManyWillBePickedFromRatings">{} از درجه بندی</string>
     <string-array name="defaultDumplingNames">
         <item>خوک آب‌پز</item>
         <item>گوساله سرخ شده</item>
