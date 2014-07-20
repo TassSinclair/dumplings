@@ -10,6 +10,7 @@ import android.view.*;
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EActivity;
 import com.googlecode.androidannotations.annotations.ViewById;
+import com.googlecode.androidannotations.annotations.res.StringRes;
 import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.ui.widgets.MainActivityPagerAdapter;
 
@@ -17,9 +18,13 @@ import net.sinclairstudios.dumplings.ui.widgets.MainActivityPagerAdapter;
 public class MainActivity extends FragmentActivity {
 
     private final static String TAB_CHOICE_KEY = "TAB_CHOICE";
+    private final static String VERSION_KEY = "VERSION";
 
     private MainActivityPagerAdapter viewPagerAdapter;
     private int tabChoice;
+
+    @StringRes
+    protected String versionName;
 
 
     @Override
@@ -81,7 +86,16 @@ public class MainActivity extends FragmentActivity {
     }
 
     private SharedPreferences getPreferences() {
-        return getPreferences(Activity.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getPreferences(Activity.MODE_PRIVATE);
+
+        if(!versionName.equals(sharedPreferences.getString(VERSION_KEY, null))) {
+            sharedPreferences
+                    .edit()
+                    .clear()
+                    .putString(VERSION_KEY, versionName)
+                    .commit();
+        }
+        return sharedPreferences;
     }
 
 }

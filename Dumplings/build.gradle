@@ -42,7 +42,7 @@ dependencies {
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.0"
+    buildToolsVersion "20"
 
     defaultConfig {
         minSdkVersion 17
@@ -73,6 +73,7 @@ android {
     buildTypes {
         release {
             debuggable false
+            zipAlign true
             jniDebugBuild false
             signingConfig signingConfigs.release
         }
