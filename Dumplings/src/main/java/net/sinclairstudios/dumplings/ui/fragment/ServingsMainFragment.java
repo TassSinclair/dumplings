@@ -30,8 +30,6 @@ public class ServingsMainFragment extends Fragment {
 
     private final static int MODIFYING_SPECIFIC_SERVINGS = 2;
 
-    private final DumplingOrderListFactory orderListFactory = new DumplingOrderListFactory();
-
     @ViewById
     protected Button specificServingsButton;
 

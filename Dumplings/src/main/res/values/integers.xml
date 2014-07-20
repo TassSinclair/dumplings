@@ -15,6 +15,7 @@
         <item>0</item>
         <item>1</item>
     </integer-array>
+    <integer name="defaultServings">5</integer>
     <integer name="maxServings">15</integer>
     <integer name="maxSpecificServings">6</integer>
 </resources>

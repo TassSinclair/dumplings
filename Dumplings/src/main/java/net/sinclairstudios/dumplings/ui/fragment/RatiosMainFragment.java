@@ -85,7 +85,8 @@ public class RatiosMainFragment extends Fragment {
     protected void initControls() {
         // Seek bar
         SeekBar.OnSeekBarChangeListener howManyPeopleChangeListener = createHowManyPeopleChangeListener();
-        int progress = getPreferences().getInt(SeekBar.class.getName(), 0);
+        int progress = getPreferences().getInt(SeekBar.class.getName(),
+                getResources().getInteger(R.integer.defaultServings));
         howManyPeopleChangeListener.onProgressChanged(howManyPeopleSeekBar, progress, false);
         // Call it once to fake an update, if the update is no change.
         howManyPeopleSeekBar.setOnSeekBarChangeListener(howManyPeopleChangeListener);

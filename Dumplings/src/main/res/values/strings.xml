@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Not to be translated. -->
-    <string name="versionName" translatable="false">20140713</string>
+    <string name="versionName" translatable="false">20140720</string>
     <!-- Not to be translated. -->
     <string name="sinclairStudiosUrl" translatable="false">http://sinclairstudios.net</string>
     <!-- Appears on main screen and on action bar of main screen. Should be enthusiastic and excitable. -->
