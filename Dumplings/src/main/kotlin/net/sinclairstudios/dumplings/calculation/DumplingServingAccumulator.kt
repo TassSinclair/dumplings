@@ -3,6 +3,7 @@ package net.sinclairstudios.dumplings.calculation
 import net.sinclairstudios.dumplings.domain.DumplingServings
 import java.util.ArrayList
 import net.sinclairstudios.dumplings.domain.DumplingOrder
+import java.util.Collections
 
 public class DumplingServingAccumulator {
 
@@ -20,9 +21,9 @@ public class DumplingServingAccumulator {
         val equivalent = _all.firstOrNull({ existing ->
             existing.dumpling == dumplingServings.dumpling
         })
-
         if (equivalent != null) {
-            equivalent.servings = equivalent.servings + dumplingServings.servings
+            val replacement = DumplingServings(equivalent.dumpling, dumplingServings.servings + equivalent.servings)
+            _all.set(_all.indexOf(equivalent), replacement)
         } else if (dumplingServings.servings > 0) {
             _all.add(dumplingServings)
         }

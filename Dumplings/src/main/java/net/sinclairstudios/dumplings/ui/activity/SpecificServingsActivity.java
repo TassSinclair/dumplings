@@ -5,6 +5,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.example.android.swipedismiss.SwipeDismissListViewTouchListener;
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EActivity;
 
+import com.googlecode.androidannotations.annotations.ViewById;
 import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.domain.*;
 import net.sinclairstudios.dumplings.ui.widgets.DismissArrayAdapterItemListViewTouchListener;
@@ -23,17 +25,21 @@ import net.sinclairstudios.dumplings.ui.widgets.DumplingServingAdapter;
 import java.util.ArrayList;
 
 @EActivity(R.layout.list_layout)
-public class SpecificServingsActivity extends ListActivity {
+public class SpecificServingsActivity extends FragmentActivity {
 
     private ArrayList<DumplingServings> dumplingServings;
     private DumplingServingAdapter dumplingServingAdapter;
 
+    @ViewById(android.R.id.list)
+    protected ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DumplingDefaults dumplingDefaults = new DumplingDefaults(this);
         dumplingServings =
                 (ArrayList<DumplingServings>)getIntent().getSerializableExtra(DumplingServings.class.getName());
 
-        dumplingServingAdapter = new DumplingServingAdapter(this, dumplingServings);
+        dumplingServingAdapter = new DumplingServingAdapter(this, dumplingDefaults, dumplingServings);
         initActionBar();
         super.onCreate(savedInstanceState);
     }
@@ -49,10 +55,9 @@ public class SpecificServingsActivity extends ListActivity {
     @AfterViews
     protected void populateListView() {
 
-        ListView listView = getListView();
         View settingView = getLayoutInflater().inflate(R.layout.list_footer, null);
         listView.addFooterView(settingView);
-        setListAdapter(dumplingServingAdapter);
+        listView.setAdapter(dumplingServingAdapter);
 
         DismissArrayAdapterItemListViewTouchListener touchListener
                 = new DismissArrayAdapterItemListViewTouchListener(listView, dumplingServingAdapter);

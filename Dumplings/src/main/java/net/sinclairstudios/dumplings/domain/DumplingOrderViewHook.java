@@ -20,17 +20,19 @@ public class DumplingOrderViewHook {
     public void bind(TextView nameTextView, TableLayout checkboxTableLayout, CountTracker masterCountTracker,
                      Context context) {
         CountTracker thisCountTracker = new CountTracker(dumplingOrder.getServings().getServings());
-        thisCountTracker.addOnAddListener(new TextViewUpdatingCountTrackerListener(nameTextView,
-                "{} " + dumplingOrder.getServings().getDumpling().getName()));
+        nameTextView.setText("{} " + dumplingOrder.getServings().getDumpling().getName());
+        thisCountTracker.addOnAddListener(new TextViewUpdatingCountTrackerListener(nameTextView, null));
         thisCountTracker.add(0);
         CompoundButton.OnCheckedChangeListener onCheckedChangeListener =
                 createListener(dumplingOrder, masterCountTracker, thisCountTracker);
 
         ViewGroup row = null;
+        checkboxTableLayout.removeAllViews();
         int arrived = dumplingOrder.getArrived();
         for (int i = 0; i < dumplingOrder.getServings().getServings(); ++i) {
             if (i % 5 == 0) {
-                row = (TableRow) LayoutInflater.from(context).inflate(R.layout.your_order_servings_row, null);
+                row = (TableRow) LayoutInflater.from(context).inflate(R.layout.your_order_servings_row,
+                        checkboxTableLayout, false);
                 checkboxTableLayout.addView(row);
             }
             CheckBox checkbox = createCheckbox(context, onCheckedChangeListener, arrived > 0);

@@ -5,6 +5,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
@@ -13,8 +14,11 @@ import com.example.android.swipedismiss.SwipeDismissListViewTouchListener;
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EActivity;
 
+import com.googlecode.androidannotations.annotations.EView;
+import com.googlecode.androidannotations.annotations.ViewById;
 import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.domain.Dumpling;
+import net.sinclairstudios.dumplings.domain.DumplingDefaults;
 import net.sinclairstudios.dumplings.domain.DumplingRating;
 import net.sinclairstudios.dumplings.domain.Rating;
 import net.sinclairstudios.dumplings.ui.widgets.DismissArrayAdapterItemListViewTouchListener;
@@ -23,16 +27,21 @@ import net.sinclairstudios.dumplings.ui.widgets.DumplingRatingAdapter;
 import java.util.ArrayList;
 
 @EActivity(R.layout.list_layout)
-public class RatingsActivity extends ListActivity {
+public class RatingsActivity extends FragmentActivity {
 
     private ArrayList<DumplingRating> dumplingRatings;
     private DumplingRatingAdapter dumplingRatingAdapter;
 
+    @ViewById(android.R.id.list)
+    protected ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DumplingDefaults dumplingDefaults = new DumplingDefaults(this);
+
         dumplingRatings =
                 (ArrayList<DumplingRating>)getIntent().getSerializableExtra(DumplingRating.class.getName());
-        dumplingRatingAdapter = new DumplingRatingAdapter(this, dumplingRatings);
+        dumplingRatingAdapter = new DumplingRatingAdapter(this, dumplingDefaults, dumplingRatings);
         initActionBar();
         super.onCreate(savedInstanceState);
     }
@@ -48,10 +57,9 @@ public class RatingsActivity extends ListActivity {
     @AfterViews
     protected void populateListView() {
 
-        ListView listView = getListView();
         View settingView = getLayoutInflater().inflate(R.layout.list_footer, null);
         listView.addFooterView(settingView);
-        setListAdapter(dumplingRatingAdapter);
+        listView.setAdapter(dumplingRatingAdapter);
 
         DismissArrayAdapterItemListViewTouchListener touchListener
                 = new DismissArrayAdapterItemListViewTouchListener(listView, dumplingRatingAdapter);
@@ -60,8 +68,6 @@ public class RatingsActivity extends ListActivity {
         // Setting this scroll listener is required to ensure that during ListView scrolling,
         // we don't look for swipes.
         listView.setOnScrollListener(touchListener.makeScrollListener());
-
-
     }
 
     public void addDumpling(View button) {

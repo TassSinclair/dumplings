@@ -27,7 +27,7 @@
     <string name="calculateRatiosButton">Show me the dumplings!</string>
     <!-- A hint to be shown in empty "dumpling name" edittext fields to act as a clue for what the user should type in
          the fields. -->
-    <string name="dumplingTypeHint">Dumpling Name?</string>
+    <string name="dumplingTypeHint">Dumpling name?</string>
     <!-- Appears on the "Your order" activity as a reminder of how many servings we have ordered but have not yet
          arrived. -->
     <string name="servingCountdown">Waiting for {} servings</string>
@@ -49,6 +49,7 @@
     <!-- Accessibility text that describes the functionality of the seekbar range bracket for "ratings". The
          {} will be replaced with a localised number, and can be moved to anywhere in the string. -->
     <string name="howManyWillBePickedFromRatings">{} will be picked from ratings</string>
+    <string name="var">{}</string>
     <!-- Default dumpling names. Exactly how they would be represented on a localised menu. -->
     <string-array name="defaultDumplingNames">
         <item>Boiled Pork</item><!-- Boiled pork -->

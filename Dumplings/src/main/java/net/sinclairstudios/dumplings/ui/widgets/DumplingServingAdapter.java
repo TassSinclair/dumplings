@@ -1,115 +1,81 @@
 package net.sinclairstudios.dumplings.ui.widgets;
 
+import android.app.FragmentManager;
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import net.sinclairstudios.dumplings.R;
-import net.sinclairstudios.dumplings.domain.DumplingRating;
-import net.sinclairstudios.dumplings.domain.DumplingRatingViewHook;
+import net.sinclairstudios.dumplings.domain.DumplingDefaults;
 import net.sinclairstudios.dumplings.domain.DumplingServings;
-import net.sinclairstudios.dumplings.domain.DumplingServingsViewHook;
-import net.sinclairstudios.dumplings.ui.widgets.DumplingNameAutocompleteAdapterFactory;
+import net.sinclairstudios.dumplings.ui.binding.DumplingBinderFactory;
+import net.sinclairstudios.dumplings.ui.fragment.DumplingNameDialogFragment;
+import net.sinclairstudios.util.TextViewUpdater;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.security.interfaces.DSAKey;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class DumplingServingAdapter extends ArrayAdapter<DumplingServings> {
 
-    private final DumplingNameAutocompleteAdapterFactory autocompleteAdapterFactory;
-    private int rowWithFocus = -1;
-    private int indexWithFocus = -1;
-    private ListView listView;
+    private final DumplingBinderFactory dumplingBinderFactory;
+    private final FragmentManager fragmentManager;
+    private final DumplingDefaults dumplingDefaults;
+    private final Map<View, TextViewUpdater> textViewUpdaters = new HashMap<View, TextViewUpdater>();
 
-    public DumplingServingAdapter(Context context, List<DumplingServings> dumplingServings) {
-        super(context, 0, dumplingServings);
-        autocompleteAdapterFactory = new DumplingNameAutocompleteAdapterFactory(context);
+    public DumplingServingAdapter(FragmentActivity fragmentActivity,
+                                 DumplingDefaults dumplingDefaults,
+                                 List<DumplingServings> dumplingServings) {
+        super(fragmentActivity, 0, dumplingServings);
+        this.dumplingDefaults = dumplingDefaults;
+        dumplingBinderFactory = new DumplingBinderFactory(fragmentActivity, dumplingDefaults);
+        fragmentManager = fragmentActivity.getFragmentManager();
     }
 
-    public void setListView(ListView listView) {
-        this.listView = listView;
+    private View createOrRecycleView(ViewGroup parent, View toBeRecycled) {
+        if (toBeRecycled == null) {
+            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            return inflater.inflate(R.layout.specific_servings_row, parent, false);
+        }
+        return toBeRecycled;
     }
 
     @Nullable
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, @NotNull ViewGroup parent) {
 
-        DumplingServings dumplingServings = getItem(position);
+        final DumplingServings dumplingServings = getItem(position);
+        final View row = createOrRecycleView(parent, convertView);
+        final TextView dumplingServingCountTextView = (TextView) row.findViewById(R.id.dumplingServingCountTextView);
+        final TextView dumplingNameTextView = (TextView) row.findViewById(R.id.dumplingNameTextView);
+        final SeekBar seekBar = (SeekBar) row.findViewById(R.id.dumplingServingSeekBar);
 
-        View row = convertView;
+        dumplingNameTextView.setText(dumplingServings.getDumpling().getName());
+        ((ImageView) row.findViewById(R.id.dumplingImage)).setImageDrawable(
+                dumplingDefaults.getIcon(dumplingServings.getDumpling().getName()));
 
-        if (convertView == null) {
-            final LayoutInflater inflater = (LayoutInflater) getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.specific_servings_row, parent, false);
+        TextViewUpdater dumplingServingTextUpdater = textViewUpdaters.get(row);
+        if (dumplingServingTextUpdater == null) {
+            dumplingServingTextUpdater = new TextViewUpdater(dumplingServingCountTextView,
+                    parent.getResources().getString(R.string.var));
+            textViewUpdaters.put(row, dumplingServingTextUpdater);
+        } else {
+            Log.w(this.getClass().getName(), "Actually did what we expected");
         }
 
-        final ListenerTrackingEditText dumplingNameEditText =
-                (ListenerTrackingEditText) row.findViewById(R.id.dumplingNameEditText);
+        dumplingBinderFactory.bindSeekBar(dumplingServings, dumplingServingTextUpdater, seekBar);
 
-        dumplingNameEditText.clearTextChangedListeners();
+        dumplingNameTextView.setOnFocusChangeListener(
+                new DumplingNameDialogFragment.Spawner(fragmentManager, dumplingBinderFactory, dumplingServings));
 
-        dumplingNameEditText.setAdapter(autocompleteAdapterFactory.createAdapter());
-        dumplingNameEditText.addTextChangedListener(autocompleteAdapterFactory
-                .createListener((ImageView) row.findViewById(R.id.dumplingImage)));
-
-        TextView dumplingServingCountTextView = (TextView) row.findViewById(R.id.dumplingServingCountTextView);
-        SeekBar seekBar = (SeekBar) row.findViewById(R.id.dumplingServingSeekBar);
-        DumplingServingsViewHook viewHook = new DumplingServingsViewHook(dumplingServings);
-        viewHook.bind(dumplingNameEditText);
-        viewHook.bind(seekBar, dumplingServingCountTextView);
-
-        dumplingNameEditText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                indexWithFocus = dumplingNameEditText.getSelectionStart();
-            }
-        });
-
-        dumplingNameEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    rowWithFocus = position;
-                    indexWithFocus = dumplingNameEditText.getSelectionStart();
-                }
-            }
-        });
-        dumplingNameEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                rowWithFocus = -1;
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-        if (position == rowWithFocus) {
-            dumplingNameEditText.setSelection(indexWithFocus);
-            dumplingNameEditText.requestFocus();
-        }
-
-        dumplingNameEditText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                rowWithFocus = -1;
-            }
-        });
         return row;
     }
 }

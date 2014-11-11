@@ -10,7 +10,7 @@ public class TextViewUpdater {
 
     public TextViewUpdater(TextView textView, String fieldValue) {
         this.textView = textView;
-        this.fieldValue = fieldValue;
+        this.fieldValue = textView.getText().toString();
     }
 
     public void update(int value) {
