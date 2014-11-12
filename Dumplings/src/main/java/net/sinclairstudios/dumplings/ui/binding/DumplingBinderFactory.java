@@ -7,6 +7,7 @@ import net.sinclairstudios.dumplings.domain.DumplingRating;
 import net.sinclairstudios.dumplings.domain.DumplingServings;
 import net.sinclairstudios.dumplings.domain.HasDumpling;
 import net.sinclairstudios.dumplings.ui.widgets.DumplingNameAutocompleteAdapterFactory;
+import net.sinclairstudios.dumplings.ui.widgets.ListenerTrackingEditText;
 import net.sinclairstudios.util.TextViewUpdater;
 
 public class DumplingBinderFactory {
@@ -26,10 +27,10 @@ public class DumplingBinderFactory {
         ratingRatingBar.setOnRatingBarChangeListener(new DumplingRatingViewHookRatingBar(dumplingRating));
     }
 
-    public void bindListenerTrackingEditText(HasDumpling hasDumpling, AutoCompleteTextView textView) {
-        textView.addTextChangedListener(new DumplingNameBinderTextWatcher(hasDumpling));
-        textView.setAdapter(dumplingNameAutocompleteAdapterFactory.createAdapter());
-        textView.setText(hasDumpling.getDumpling().getName());
+    public void bindListenerTrackingEditText(HasDumpling hasDumpling, ListenerTrackingEditText editText) {
+        editText.addTextChangedListener(new DumplingNameBinderTextWatcher(hasDumpling));
+        editText.setAdapter(dumplingNameAutocompleteAdapterFactory.createAdapter());
+        editText.append(hasDumpling.getDumpling().getName());
     }
 
     public void bindImageView(TextView textView, ImageView imageView) {
