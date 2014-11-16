@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import net.sinclairstudios.dumplings.R;
-import net.sinclairstudios.dumplings.domain.DumplingRating;
 import net.sinclairstudios.dumplings.domain.HasDumpling;
 import net.sinclairstudios.dumplings.ui.binding.DumplingBinderFactory;
 import net.sinclairstudios.dumplings.ui.widgets.ListenerTrackingEditText;
@@ -79,12 +78,11 @@ public class DumplingNameDialogFragment extends DialogFragment {
 
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
-
-            if (dialogFragment == null) {
-                dialogFragment = new DumplingNameDialogFragment(dumplingBinderFactory, hasDumpling);
-            }
-            if (!dialogFragment.isResumed()) {
-                dialogFragment.show(parent, "DumplingNameDialogFragment");
+            if (hasFocus) {
+                if (dialogFragment == null) {
+                    dialogFragment = new DumplingNameDialogFragment(dumplingBinderFactory, hasDumpling);
+                    dialogFragment.show(parent, "DumplingNameDialogFragment-" + hasDumpling.toString());
+                }
             }
         }
     }

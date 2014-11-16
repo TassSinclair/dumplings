@@ -8,7 +8,7 @@ public class TextViewUpdater {
     private final TextView textView;
     private final String fieldValue;
 
-    public TextViewUpdater(TextView textView, String fieldValue) {
+    public TextViewUpdater(TextView textView) {
         this.textView = textView;
         this.fieldValue = textView.getText().toString();
     }

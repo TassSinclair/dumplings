@@ -7,15 +7,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
-
 import com.googlecode.androidannotations.annotations.AfterViews;
 import com.googlecode.androidannotations.annotations.EActivity;
 import com.googlecode.androidannotations.annotations.ViewById;
-
 import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.domain.DumplingDefaults;
 import net.sinclairstudios.dumplings.domain.DumplingOrder;
-import net.sinclairstudios.dumplings.domain.DumplingServings;
 import net.sinclairstudios.dumplings.ui.widgets.DumplingOrderAdapter;
 import net.sinclairstudios.util.CountTracker;
 import net.sinclairstudios.util.TextViewUpdatingCountTrackerListener;
@@ -49,9 +46,7 @@ public class YourOrderActivity extends ListActivity {
             totalDumplings += dumplingOrder.getServings().getServings();
         }
         CountTracker masterCountTracker = new CountTracker(totalDumplings);
-        masterCountTracker.addOnAddListener(new TextViewUpdatingCountTrackerListener(servingCountdownTextView,
-                getString(R.string.servingCountdown)));
-        masterCountTracker.add(0);
+        masterCountTracker.addOnAddListener(new TextViewUpdatingCountTrackerListener(servingCountdownTextView));
         DumplingDefaults dumplingDefaults = new DumplingDefaults(this);
         getListView().setAdapter(new DumplingOrderAdapter(this, dumplingDefaults, dumplingOrders, masterCountTracker));
     }

@@ -21,8 +21,7 @@ public class DumplingOrderViewHook {
                      Context context) {
         CountTracker thisCountTracker = new CountTracker(dumplingOrder.getServings().getServings());
         nameTextView.setText("{} " + dumplingOrder.getServings().getDumpling().getName());
-        thisCountTracker.addOnAddListener(new TextViewUpdatingCountTrackerListener(nameTextView, null));
-        thisCountTracker.add(0);
+        thisCountTracker.addOnAddListener(new TextViewUpdatingCountTrackerListener(nameTextView));
         CompoundButton.OnCheckedChangeListener onCheckedChangeListener =
                 createListener(dumplingOrder, masterCountTracker, thisCountTracker);
 

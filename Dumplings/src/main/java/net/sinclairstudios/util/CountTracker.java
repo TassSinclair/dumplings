@@ -1,6 +1,5 @@
 package net.sinclairstudios.util;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -21,5 +20,6 @@ public class CountTracker {
 
     public void addOnAddListener(CountTrackerListener listener) {
         listeners.add(listener);
+        listener.onCountTrackerAdd(0, count);
     }
 }

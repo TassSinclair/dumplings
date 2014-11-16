@@ -6,22 +6,26 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.widget.*;
-import com.googlecode.androidannotations.annotations.*;
+import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.Switch;
+import android.widget.TextView;
+import com.googlecode.androidannotations.annotations.AfterViews;
+import com.googlecode.androidannotations.annotations.Click;
+import com.googlecode.androidannotations.annotations.EFragment;
+import com.googlecode.androidannotations.annotations.ViewById;
 import net.sinclairstudios.dumplings.DumplingsRatingsDataController;
 import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.calculation.DumplingServingAccumulator;
 import net.sinclairstudios.dumplings.domain.DumplingOrder;
-import net.sinclairstudios.dumplings.ui.activity.RatingsActivity_;
-import net.sinclairstudios.dumplings.ui.activity.YourOrderActivity_;
 import net.sinclairstudios.dumplings.domain.DumplingOrderListFactory;
 import net.sinclairstudios.dumplings.domain.DumplingRating;
-import net.sinclairstudios.dumplings.domain.DumplingServings;
+import net.sinclairstudios.dumplings.ui.activity.RatingsActivity_;
+import net.sinclairstudios.dumplings.ui.activity.YourOrderActivity_;
 import net.sinclairstudios.util.TextViewUpdater;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @EFragment(R.layout.ratios_main_layout)
 public class RatiosMainFragment extends Fragment {
@@ -102,8 +106,7 @@ public class RatiosMainFragment extends Fragment {
     private SeekBar.OnSeekBarChangeListener createHowManyPeopleChangeListener() {
         return new SeekBar.OnSeekBarChangeListener() {
 
-            private final TextViewUpdater textViewUpdater =
-                    new TextViewUpdater(howManyPeopleTextView, getString(R.string.howManyServings));
+            private final TextViewUpdater textViewUpdater = new TextViewUpdater(howManyPeopleTextView);
 
             @Override
             public void onProgressChanged(@NotNull SeekBar seekBar, int value, boolean b) {

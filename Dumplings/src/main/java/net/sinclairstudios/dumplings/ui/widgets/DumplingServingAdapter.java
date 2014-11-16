@@ -64,8 +64,7 @@ public class DumplingServingAdapter extends ArrayAdapter<DumplingServings> {
 
         TextViewUpdater dumplingServingTextUpdater = textViewUpdaters.get(row);
         if (dumplingServingTextUpdater == null) {
-            dumplingServingTextUpdater = new TextViewUpdater(dumplingServingCountTextView,
-                    parent.getResources().getString(R.string.var));
+            dumplingServingTextUpdater = new TextViewUpdater(dumplingServingCountTextView);
             textViewUpdaters.put(row, dumplingServingTextUpdater);
         } else {
             Log.w(this.getClass().getName(), "Actually did what we expected");
