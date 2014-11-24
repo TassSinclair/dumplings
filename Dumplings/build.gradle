@@ -62,7 +62,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("/Users/tass/Keystore.jks")
+            storeFile file("/home/tass/Keystore.jks")
             storePassword "*****"
             keyAlias "Sinclair"
             keyPassword "*****"
