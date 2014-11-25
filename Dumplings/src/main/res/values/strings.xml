@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Not to be translated. -->
-    <string name="versionName" translatable="false">20140720</string>
+    <string name="versionName" translatable="false">20141116</string>
     <!-- Not to be translated. -->
     <string name="sinclairStudiosUrl" translatable="false">http://sinclairstudios.net</string>
     <!-- Appears on main screen and on action bar of main screen. Should be enthusiastic and excitable. -->
@@ -49,7 +49,7 @@
     <!-- Accessibility text that describes the functionality of the seekbar range bracket for "ratings". The
          {} will be replaced with a localised number, and can be moved to anywhere in the string. -->
     <string name="howManyWillBePickedFromRatings">{} will be picked from ratings</string>
-    <string name="var">{}</string>
+    <string name="var" translatable="false">{}</string>
     <!-- Default dumpling names. Exactly how they would be represented on a localised menu. -->
     <string-array name="defaultDumplingNames">
         <item>Boiled Pork</item><!-- Boiled pork -->

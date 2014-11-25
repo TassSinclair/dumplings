@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="net.sinclairstudios.dumplings"
-          android:versionCode="20140720"
-          android:versionName="20140720">
+          android:versionCode="20141124"
+          android:versionName="20141124">
 
     <application
             android:supportsRtl="true"
