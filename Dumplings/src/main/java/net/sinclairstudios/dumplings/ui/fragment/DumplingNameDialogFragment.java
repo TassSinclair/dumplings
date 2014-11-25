@@ -18,10 +18,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class DumplingNameDialogFragment extends DialogFragment {
 
-    private final DumplingBinderFactory dumplingBinderFactory;
-    private final HasDumpling hasDumpling;
+    private DumplingBinderFactory dumplingBinderFactory;
+    private HasDumpling hasDumpling;
 
-    public DumplingNameDialogFragment(DumplingBinderFactory dumplingBinderFactory,
+    public DumplingNameDialogFragment() {
+    }
+
+    private void init(DumplingBinderFactory dumplingBinderFactory,
                                       HasDumpling hasDumpling) {
         this.dumplingBinderFactory = dumplingBinderFactory;
         this.hasDumpling = hasDumpling;
@@ -61,7 +64,7 @@ public class DumplingNameDialogFragment extends DialogFragment {
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 
-    public static class Spawner implements View.OnFocusChangeListener {
+    public static class Spawner implements View.OnClickListener {
 
         private final FragmentManager parent;
         private final DumplingBinderFactory dumplingBinderFactory;
@@ -76,14 +79,17 @@ public class DumplingNameDialogFragment extends DialogFragment {
             this.hasDumpling = hasDumpling;
         }
 
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            if (hasFocus) {
-                if (dialogFragment == null) {
-                    dialogFragment = new DumplingNameDialogFragment(dumplingBinderFactory, hasDumpling);
-                    dialogFragment.show(parent, "DumplingNameDialogFragment-" + hasDumpling.toString());
-                }
+        private void showDialog() {
+            if (dialogFragment == null) {
+                dialogFragment = new DumplingNameDialogFragment();
+                dialogFragment.init(dumplingBinderFactory, hasDumpling);
+                dialogFragment.show(parent, "DumplingNameDialogFragment-" + hasDumpling.toString());
             }
+        }
+
+        @Override
+        public void onClick(View v) {
+            showDialog();
         }
     }
 }

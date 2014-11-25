@@ -7,10 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.SeekBar;
-import android.widget.TextView;
+import android.widget.*;
 import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.domain.DumplingDefaults;
 import net.sinclairstudios.dumplings.domain.DumplingServings;
@@ -56,6 +53,7 @@ public class DumplingServingAdapter extends ArrayAdapter<DumplingServings> {
         final View row = createOrRecycleView(parent, convertView);
         final TextView dumplingServingCountTextView = (TextView) row.findViewById(R.id.dumplingServingCountTextView);
         final TextView dumplingNameTextView = (TextView) row.findViewById(R.id.dumplingNameTextView);
+        final ImageButton dumplingNameButton = (ImageButton) row.findViewById(R.id.dumplingNameButton);
         final SeekBar seekBar = (SeekBar) row.findViewById(R.id.dumplingServingSeekBar);
 
         dumplingNameTextView.setText(dumplingServings.getDumpling().getName());
@@ -66,13 +64,11 @@ public class DumplingServingAdapter extends ArrayAdapter<DumplingServings> {
         if (dumplingServingTextUpdater == null) {
             dumplingServingTextUpdater = new TextViewUpdater(dumplingServingCountTextView);
             textViewUpdaters.put(row, dumplingServingTextUpdater);
-        } else {
-            Log.w(this.getClass().getName(), "Actually did what we expected");
         }
 
         dumplingBinderFactory.bindSeekBar(dumplingServings, dumplingServingTextUpdater, seekBar);
 
-        dumplingNameTextView.setOnFocusChangeListener(
+        dumplingNameButton.setOnClickListener(
                 new DumplingNameDialogFragment.Spawner(fragmentManager, dumplingBinderFactory, dumplingServings));
 
         return row;

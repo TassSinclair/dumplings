@@ -16,8 +16,7 @@
             android:id="@+id/dumplingImage"
             android:src="@drawable/simple_dumpling"
             android:importantForAccessibility="no"
-            android:layout_marginRight="8dp"
-            />
+            android:layout_marginEnd="8sp"/>
 
     <LinearLayout
             android:orientation="vertical"
@@ -26,18 +25,29 @@
             android:layout_weight="1"
             >
 
-        <EditText
+        <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none"
-                android:hint="@string/dumplingTypeHint"
-                android:editable="false"
-                android:clickable="false"
-                android:singleLine="true"
-                android:textSize="22sp"
-                android:id="@+id/dumplingNameTextView"
-                />
-
+                android:gravity="center_vertical">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:singleLine="true"
+                    android:id="@+id/dumplingNameTextView"
+                    android:text="@string/dumplingTypeHint"
+                    android:textSize="22sp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4sp"/>
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/edit"
+                    android:id="@+id/dumplingNameButton"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_weight="0"/>
+        </LinearLayout>
         <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,7 +55,7 @@
                 android:numStars="5"
                 style="@style/DumplingRatingBar"
                 android:stepSize="1"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="left"
                 />
     </LinearLayout>
 </LinearLayout>

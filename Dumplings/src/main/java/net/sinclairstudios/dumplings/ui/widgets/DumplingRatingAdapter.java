@@ -6,10 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
+import android.widget.*;
 import net.sinclairstudios.dumplings.R;
 import net.sinclairstudios.dumplings.domain.DumplingDefaults;
 import net.sinclairstudios.dumplings.domain.DumplingRating;
@@ -50,6 +47,7 @@ public class DumplingRatingAdapter extends ArrayAdapter<DumplingRating> {
         final DumplingRating dumplingRating = getItem(position);
         final View row = createOrRecycleView(parent, convertView);
         final TextView dumplingNameTextView = (TextView) row.findViewById(R.id.dumplingNameTextView);
+        final ImageButton dumplingNameButton = (ImageButton) row.findViewById(R.id.dumplingNameButton);
         final RatingBar dumplingRatingBar = (RatingBar) row.findViewById(R.id.dumplingRatioRatingBar);
 
         dumplingNameTextView.setText(dumplingRating.getDumpling().getName());
@@ -58,7 +56,8 @@ public class DumplingRatingAdapter extends ArrayAdapter<DumplingRating> {
 
         dumplingBinderFactory.bindRatingBar(dumplingRating, dumplingRatingBar);
 
-        dumplingNameTextView.setOnFocusChangeListener(
+
+        dumplingNameButton.setOnClickListener(
                 new DumplingNameDialogFragment.Spawner(fragmentManager, dumplingBinderFactory, dumplingRating));
 
         return row;

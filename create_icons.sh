@@ -6,7 +6,8 @@ then
 fi
 declare -a flavours=(pork beef prawn vegetable)
 declare -a widgets=(dumpling_waiting dumpling_here star_empty star_full)
-declare -a widgetSizes=(164 128 84 64 42)
+declare -a buttonSizes=(128 96 64 48 32)
+declare -a widgetSizes=(164 128 96 64 48)
 declare -a iconSizes=(192 144 96 72 48)
 declare -a aboutLogoSizes=(1024 768 512 384 256)
 declare -a overlays=(160 120 80 60 40)
@@ -25,7 +26,7 @@ do
   cp tmp/simple_dumpling_${resName}.png ${outputDir}/simple_dumpling.png
   for flavour in ${flavours[@]}
   do
-    # ...and dumpling flavours for each flavour. 
+    # ...and dumpling flavours for each flavour.
     convert -background none ${flavour}_icon.svg -resize ${overlay}x${overlay} tmp/${flavour}_icon_${resName}.png
     composite -gravity center tmp/${flavour}_icon_${resName}.png tmp/simple_dumpling_${resName}.png tmp/${flavour}_dumpling_${resName}.png
     cp tmp/${flavour}_dumpling_${resName}.png ${outputDir}/${flavour}_dumpling.png
@@ -40,9 +41,13 @@ do
     cp tmp/${widget}_${resName}.png ${outputDir}/${widget}.png
   done
 
+  buttonSize=${buttonSizes[sizeIndex]}
+  convert -background none edit.svg -resize ${buttonSize}x${buttonSize} tmp/edit_${resName}.png
+  cp tmp/edit_${resName}.png ${outputDir}/edit.png
+
   # UI cues
   for icon in add_dumpling ratings_and_ratios servings
-  do 
+  do
     convert -background none ${icon}.svg -resize ${iconSize}x${iconSize} tmp/${icon}_${resName}.png
     cp tmp/${icon}_${resName}.png ${outputDir}/${icon}.png
   done
