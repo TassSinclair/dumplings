@@ -6,8 +6,8 @@ then
 fi
 declare -a flavours=(pork beef prawn vegetable)
 declare -a widgets=(dumpling_waiting dumpling_here star_empty star_full)
-declare -a buttonSizes=(128 96 64 48 32)
-declare -a widgetSizes=(164 128 96 64 48)
+declare -a buttonSizes=(144 96 72 48 32)
+declare -a widgetSizes=(160 120 80 60 40)
 declare -a iconSizes=(192 144 96 72 48)
 declare -a aboutLogoSizes=(1024 768 512 384 256)
 declare -a overlays=(160 120 80 60 40)

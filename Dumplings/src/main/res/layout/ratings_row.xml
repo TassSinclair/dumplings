@@ -55,7 +55,7 @@
                 android:numStars="5"
                 style="@style/DumplingRatingBar"
                 android:stepSize="1"
-                android:layout_gravity="left"
+                android:layout_gravity="start"
                 />
     </LinearLayout>
 </LinearLayout>
