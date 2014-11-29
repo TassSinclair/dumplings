@@ -14,3 +14,5 @@ It's your turn to order this time. Disaster. You can't work out how many plates 
 Luckily, you thought ahead and downloaded **Dumplings!**, the app designed to help with this important decision.
 
 After consulting **Dumplings!**, you sucessfully order 7 plates of dumplings for the table. Your fellow developers are impressed at your dumpling selection skills, and you owe it all to **Dumplings!**.
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />Dumplings! is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
