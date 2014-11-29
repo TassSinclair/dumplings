@@ -3,7 +3,7 @@ Dumplings!
 
 It's Monday, a quarter past midday. You glance up, look around, and ask the room: "Anyone up for dumplings?"
 
-Your fellow developers are coming with you. You leave the building, cross the road and follow the path to The Long Dragon, just a bit further down the street.
+Your fellow dumpling enthusiasts are coming with you. You leave the building, cross the road and follow the path to The Long Dragon, just a bit further down the street.
 
 As you enter the restaurant, the manager nods to acknowledge your presence and directs you to the large table at the back.
 
