@@ -1,0 +1,21 @@
+<resources>
+    <integer-array name="defaultDumplingRatings">
+        <item>4</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+    </integer-array>
+    <integer-array name="defaultDumplingServings">
+        <item>3</item>
+        <item>2</item>
+        <item>2</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+    <integer name="defaultServings">5</integer>
+    <integer name="maxServings">16</integer>
+    <integer name="maxSpecificServings">6</integer>
+</resources>
